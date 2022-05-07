@@ -7,6 +7,7 @@ import Header from './components/Header/Header';
 import Index from './pages/Homepage/Index';
 import Details from './pages/Details/Details';
 import NotFound from './pages/NotFound/NotFound';
+import LoaderSpinner from './components/LoaderSpinner/LoaderSpinner';
 import { useEffect } from 'react';
 import { getPeople } from './redux/actions/peopleAction';
 
@@ -20,6 +21,11 @@ function App() {
     useEffect(() => {
         dispatch(getPeople());
     }, [dispatch]);
+
+    if (isLoading) {
+        return <LoaderSpinner />;
+    }
+    
 
     return (
         <BrowserRouter className="container my-4">
