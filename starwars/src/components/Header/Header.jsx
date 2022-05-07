@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Header = ({ title }) => {
+const Header = ({ title, colorTitle }) => {
     return (
-        <header className="container">
-            <h1>{title}</h1>
+        <header className="container mt-4">
+            <h1 style={{color: colorTitle}}>{title}</h1>
         </header>
     );
 };

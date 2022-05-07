@@ -23,7 +23,7 @@ function App() {
 
     return (
         <BrowserRouter className="container my-4">
-            <Header title={'Starwars characters'} />
+            <Header title="Starwars characters" colorTitle="#fff" />
             <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/people/:id" element={<Details />} />
