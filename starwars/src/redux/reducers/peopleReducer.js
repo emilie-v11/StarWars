@@ -24,9 +24,8 @@ const people = (state = initialState, action) => {
                 isLoading: false,
                 characters: payload.results,
                 currentPage:
-                    payload.previous !== null
-                        ? Number(payload.previous.substr(-1)) + 1
-                        : Number(payload.next.substr(-1)) - 1,
+                    payload.previous !== null ? Number(payload.previous.substr(-1)) + 1 : Number(1),
+                // : Number(payload.next.substr(-1)) - 1,
                 error: false,
             };
 
