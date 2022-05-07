@@ -1,7 +1,7 @@
 import StarwarsService from '../../services/starwars.service';
 import { GET_PEOPLE, GET_PEOPLE_FAIL, GET_PEOPLE_SUCCESS } from './types';
 
-export const getAPIAllCharacters = () => dispatch => {
+export const getPeople = () => dispatch => {
     return StarwarsService.getAllCharacters().then(
         response => {
             dispatch({
@@ -12,7 +12,6 @@ export const getAPIAllCharacters = () => dispatch => {
                 type: GET_PEOPLE_SUCCESS,
                 payload: response,
             });
-            console.log(response); //undefined
         },
         error => {
             dispatch({
@@ -23,3 +22,5 @@ export const getAPIAllCharacters = () => dispatch => {
         }
     );
 };
+
+// export const get

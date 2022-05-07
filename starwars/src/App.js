@@ -8,15 +8,17 @@ import Index from './pages/Homepage/Index';
 import Details from './pages/Details/Details';
 import NotFound from './pages/NotFound/NotFound';
 import { useEffect } from 'react';
-import { getAPIAllCharacters } from './redux/actions/peopleAction';
+import { getPeople } from './redux/actions/peopleAction';
 
 function App() {
     const dispatch = useDispatch();
     const isLoading = useSelector(state => state.people.isLoading);
+    const currentPage = useSelector(state => state.people.currentPage);
     console.log(isLoading);
+    console.log(currentPage);
 
     useEffect(() => {
-        dispatch(getAPIAllCharacters());
+        dispatch(getPeople());
     }, [dispatch]);
 
     return (

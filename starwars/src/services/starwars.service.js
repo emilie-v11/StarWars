@@ -10,15 +10,10 @@ class StarwarsService {
      */
     async getAllCharacters() {
         try {
-            // const URL = 'https://swapi.dev/api/people';
-            const response = await axios.get(baseURL + 'people');
-            // const response = await axios.get(`${API_URL}/people`);
-            // const response = await axios({
-            //     method: 'get',
-            //     url: API_URL + 'people',
-            // });
-            console.log(response.data.results);
-            return response.data.results;
+            const response = await axios.get(baseURL + `${'people'}/?${'undefined=&page=1'}`);
+            console.log(response.data, response.data.results);
+            // return response.data.results;
+            return response.data;
         } catch (error) {
             console.log('error getAllCharacters', error);
         }
@@ -33,22 +28,13 @@ class StarwarsService {
      */
     async getCharacterById(id) {
         try {
-            const response = await axios({
-                method: 'get',
-                url: baseURL + `${'people'}/${id}`,
-            });
+            const response = await axios.get(baseURL + `${'people'}/${id}`);
+            console.log(response.data);
             return response.data;
         } catch (error) {
             console.log('error getCharacterById', error);
         }
     }
 }
-
-/**
- * Make request to get data informations to API with endpoints
- * @param {string} endpoint
- *
- * @returns data's characters informations about endpoints to API
- */
 
 export default new StarwarsService();

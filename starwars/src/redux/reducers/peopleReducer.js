@@ -1,9 +1,10 @@
 import { GET_PEOPLE, GET_PEOPLE_FAIL, GET_PEOPLE_SUCCESS } from '../actions/types';
 
 const initialState = {
-    // Characters: [],
     isLoading: true,
     error: null,
+    currentPage: 1,
+    characters: [],
 };
 
 const people = (state = initialState, action) => {
@@ -21,7 +22,11 @@ const people = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                Characters: payload,
+                characters: payload.results,
+                currentPage:
+                    payload.previous !== null
+                        ? Number(payload.previous.substr(-1)) + 1
+                        : Number(payload.next.substr(-1)) - 1,
                 error: false,
             };
 
