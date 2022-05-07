@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Table } from 'react-bootstrap';
-import { propTypes } from 'react-bootstrap/esm/Image';
 
 const TableComponent = ({ people }) => {
     return (
