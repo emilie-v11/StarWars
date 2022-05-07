@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Header = ({ title, colorTitle }) => {
     return (
@@ -8,6 +9,11 @@ const Header = ({ title, colorTitle }) => {
             </h1>
         </header>
     );
+};
+
+Header.propTypes = {
+    title: PropTypes.string,
+    colorTitle: PropTypes.string,
 };
 
 export default Header;
