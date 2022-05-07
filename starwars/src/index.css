@@ -7,3 +7,7 @@ body {
     background: url(../src/assets/img/stars.jpeg), no-repeat;
     background-size: cover;
 }
+
+* {
+    color: #fff;
+}
