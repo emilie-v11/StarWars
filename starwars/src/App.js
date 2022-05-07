@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import {} from 'react-bootstrap';
 import Header from './components/Header/Header';
@@ -25,7 +24,7 @@ function App() {
     if (isLoading) {
         return <LoaderSpinner />;
     }
-    
+
 
     return (
         <BrowserRouter className="container my-4">
