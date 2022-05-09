@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { baseURL } from './API-baseURL';
+import { peopleAttributesURL } from './API-attributesURL';
 
 class StarwarsService {
     /**
@@ -8,14 +9,13 @@ class StarwarsService {
      *
      * @returns data's characters informations about endpoints to API
      */
-    async getAllCharacters() {
+    async getAPIData(attribute) {
         try {
-            const response = await axios.get(baseURL + `${'people'}/?${'undefined=&page=1'}`);
+            const response = await axios.get(baseURL + attribute);
             console.log(response.data, response.data.results);
-            // return response.data.results;
             return response.data;
         } catch (error) {
-            console.log('error getAllCharacters', error);
+            console.log('error getAPIData', error);
         }
     }
 
@@ -28,7 +28,7 @@ class StarwarsService {
      */
     async getCharacterById(id) {
         try {
-            const response = await axios.get(baseURL + `${'people'}/${id}`);
+            const response = await axios.get(baseURL + peopleAttributesURL + `${id}`);
             console.log(response.data);
             return response.data;
         } catch (error) {
