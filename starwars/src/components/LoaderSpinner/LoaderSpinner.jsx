@@ -8,7 +8,7 @@ import './LoaderSpinner.css';
 const LoaderSpinner = () => {
     return (
         <div className="Loader-Overlay">
-            <p>Chargement ...</p>
+            <p>Loading ...</p>
             <svg className="spinner" viewBox="0 0 66 66" datareactid=".0.3.0.0.0.0.0">
                 <circle
                     className="path"
