@@ -9,6 +9,12 @@ import {
     GET_PERSON_BY_ID_SUCCESS,
 } from './types';
 
+/**
+ * Redux Actions for manage the recuperation of the data for all People and one person by ID
+ * @property {function} getPeople - option @param - function for all people data, use Starwars service file and API attributes
+ * @property {function} getPersonById - id @param -  function for one person by ID, use Starwars service file and API attributes
+ */
+
 export const getPeople = option => dispatch => {
     return StarwarsService.getAPIData(peopleAttributesURL + option).then(
         response => {
