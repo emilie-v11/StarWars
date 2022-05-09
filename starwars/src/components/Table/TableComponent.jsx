@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Table } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 
 const TableComponent = ({ people }) => {
     return (
@@ -20,12 +21,14 @@ const TableComponent = ({ people }) => {
                         <td className="p-1 py-3 p-sm-3">{character.height} cm</td>
                         <td className="p-1 py-3 p-sm-3 text-capitalize">{character.gender}</td>
                         <td className="p-1 py-3 p-sm-3 position-relative">
-                            <Button
-                                className="position-absolute top-50 start-50 translate-middle py-1 px-lg-4"
-                                variant="warning"
-                            >
-                                View
-                            </Button>
+                            <NavLink to={`people/${character.url.slice(29)}`}>
+                                <Button
+                                    className="position-absolute top-50 start-50 translate-middle py-1 px-lg-4"
+                                    variant="warning"
+                                >
+                                    View
+                                </Button>
+                            </NavLink>
                         </td>
                     </tr>
                 ))}
