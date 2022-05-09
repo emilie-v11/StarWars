@@ -8,10 +8,10 @@ const NotFound = () => {
             <div className="Image-404 position-absolute top-50 start-50 translate-middle">
                 <div className="Content-404 position-absolute top-50 start-50 translate-middle">
                     <span className="Number-404">404</span>
-                    <p className="Text-404">Oups ! Repartons discrètement ...</p>
+                    <p className="Text-404">Oops! Let's go back quietly ...</p>
 
                     <NavLink className="Back-Home" to="/">
-                        Retourner sur la page d'accueil
+                        Back to the home page
                     </NavLink>
                 </div>
             </div>
