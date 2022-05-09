@@ -1,4 +1,10 @@
 .css-1scal0h-MuiPaginationItem-root,
-.css-yx0nvq-MuiButtonBase-root-MuiPaginationItem-root {
+.css-yx0nvq-MuiButtonBase-root-MuiPaginationItem-root, 
+.css-s1jfdj-MuiButtonBase-root-MuiPaginationItem-root {
     color: #fff !important;
+}
+
+.css-s1jfdj-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+    background-color: #ffc106 !important;
+    color: black !important;
 }

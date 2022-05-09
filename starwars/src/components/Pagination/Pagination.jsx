@@ -16,7 +16,7 @@ export default function PaginationControlled({ page, handleChange, totalPages })
                 page={page}
                 onChange={handleChange}
                 size={'large'}
-                color="standard"
+                color="primary"
             />
         </Stack>
     );
