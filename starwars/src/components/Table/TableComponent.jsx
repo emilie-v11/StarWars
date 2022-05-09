@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import { Button, Table } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
+/**
+ * Table Component who contain the data for some information and show 10 people per 10
+ * @property {array} people - Name of the current person in details page
+ */
+
 const TableComponent = ({ people }) => {
     return (
         <Table className="text-center text-sm-start" striped bordered hover variant="dark">
