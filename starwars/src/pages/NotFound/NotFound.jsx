@@ -2,6 +2,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './NotFound.css';
 
+/**
+ * NotFound Page - 404 Page, for wrong URL
+ */
 const NotFound = () => {
     return (
         <main className="Main-Error404 position-relative">

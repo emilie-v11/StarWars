@@ -4,13 +4,17 @@ import PaginationRounded from '../../components/Pagination/Pagination';
 import TableComponent from '../../components/Table/TableComponent';
 import { getPeople } from '../../redux/actions/peopleAction';
 
+/**
+ * Index Page - Homepage - Contain the Table and Pagination
+ */
+
 const Index = () => {
     const dispatch = useDispatch();
 
     const people = useSelector(state => state.people.characters);
     const currentPage = useSelector(state => state.people.currentPage);
     const count = useSelector(state => state.people.count);
-    
+
     const [page, setPage] = useState(currentPage);
 
     useEffect(() => {
