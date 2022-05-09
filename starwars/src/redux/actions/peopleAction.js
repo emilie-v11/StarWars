@@ -11,7 +11,6 @@ import {
 
 export const getPeople = option => dispatch => {
     return StarwarsService.getAPIData(peopleAttributesURL + option).then(
-        // return StarwarsService.getAPIData(peopleAttributesURL, `?page=` + option).then(
         response => {
             dispatch({
                 type: GET_PEOPLE,
