@@ -16,7 +16,7 @@ import {
  */
 
 export const getPeople = option => dispatch => {
-    return StarwarsService.getAPIData(peopleAttributesURL + option).then(
+    return StarwarsService.getAPIPeople(peopleAttributesURL + option).then(
         response => {
             dispatch({
                 type: GET_PEOPLE,
@@ -38,7 +38,7 @@ export const getPeople = option => dispatch => {
 };
 
 export const getPersonById = id => dispatch => {
-    return StarwarsService.getCharacterById(id).then(
+    return StarwarsService.getAPIPersonById(id).then(
         response => {
             dispatch({
                 type: GET_PERSON_BY_ID,
@@ -48,7 +48,6 @@ export const getPersonById = id => dispatch => {
                 type: GET_PERSON_BY_ID_SUCCESS,
                 payload: response,
             });
-            console.log(response);
         },
         error => {
             dispatch({

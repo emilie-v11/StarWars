@@ -17,9 +17,9 @@ const initialState = {
 
 /**
  * Reducer for Redux - for Get People & Get Personn by ID
- * GET_PEOPLE & GET_PERSON_BY_ID : time between beginning of request and reception of the data - A SpinnerLoader is activateduring that time.
- * GET_PEOPLE_SUCCESS & GET_PERSON_BY_ID_SUCCESS : Request is a sucessful one - SpinnerLoader is stopped and the data stocked in Redux state.
- * GET_PEOPLE_FAIL & GET_PERSON_BY_ID_FAIL : The request is failed, an error is returned
+ * Simple GET : time between beginning of request and reception of the data - A SpinnerLoader is activateduring that time.
+ * GET SUCCESS : Request is a sucessful one - SpinnerLoader is stopped and the data stocked in Redux state.
+ * GET_FAIL : The request is failed, an error is returned
  */
 
 const people = (state = initialState, action) => {
