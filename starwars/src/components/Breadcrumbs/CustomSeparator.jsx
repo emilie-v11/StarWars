@@ -11,6 +11,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
  */
 
 export default function CustomSeparator({ personName, currentPerson }) {
+    // Add '...' for the homepage, when personn is empty
     const isEmpty = Object.keys(currentPerson).length === 0;
 
     const breadcrumbs = [

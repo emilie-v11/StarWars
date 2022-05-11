@@ -24,6 +24,7 @@ function App() {
     if (isLoading) {
         return <LoaderSpinner />;
     }
+
     return (
         <BrowserRouter className="container my-4">
             <Header title="Starwars characters" colorTitle="#FFC106" />

@@ -26,7 +26,6 @@ const Index = () => {
     };
 
     const totalPages = Math.ceil(count / 10);
-    console.log(totalPages);
 
     return (
         <main className="Main-Homepage container p-1 pt-4 p-sm-3 mt-5">
