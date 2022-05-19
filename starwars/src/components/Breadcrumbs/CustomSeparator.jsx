@@ -15,7 +15,7 @@ export default function CustomSeparator({ personName, currentPerson }) {
     const isEmpty = Object.keys(currentPerson).length === 0;
 
     const breadcrumbs = [
-        <Link underline="hover" key="1" color="inherit" href={'/'}>
+        <Link underline="hover" key="1" color="inherit" href="/">
             Home
         </Link>,
         <Link underline="hover" key="2" color="inherit" href="#">

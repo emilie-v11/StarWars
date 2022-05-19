@@ -10,7 +10,7 @@ import {
 const initialState = {
     isLoading: true,
     error: null,
-    currentPage: 1,
+    currentPage: null,
     characters: [],
     person: {},
 };
