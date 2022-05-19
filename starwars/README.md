@@ -24,7 +24,7 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### Be careful
+## 🚨  Be careful 🚨
 
 If you get lost and get to the page 404, Enemies could be hiding there ...
 
