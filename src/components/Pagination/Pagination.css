@@ -4,7 +4,8 @@
     color: #fff !important;
 }
 
-.css-s1jfdj-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+.css-s1jfdj-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected, .css-1bfr02t.Mui-selected, 
+.css-1bfr02t.Mui-selected:hover {
     background-color: #ffc106 !important;
     color: black !important;
 }
