@@ -1,6 +1,7 @@
-# AssessFirst Dev Test with React
+# Project with Starwars API , React, Redux, Bootstrap & MUI
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+API : https://swapi.dev
 
 ## 1. Dependencies
 
@@ -21,10 +22,10 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
+Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## 🚨  Be careful 🚨
+## 🚨 Be careful 🚨
 
 If you get lost and get to the page 404, Enemies could be hiding there ...
 
