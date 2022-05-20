@@ -1,7 +1,7 @@
 # Project with Starwars API , React, Redux, Bootstrap & MUI
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-API : https://swapi.dev
+- [Starwars API](https://swapi.dev)
 
 ## 1. Dependencies
 
