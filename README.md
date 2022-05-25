@@ -3,7 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 -   [Starwars API](https://swapi.dev)
--   [See my Website](https://stellular-bublanina-375797.netlify.app/)
+-   [See my Website](https://stellular-bublanina-375797.netlify.app/) 👋
 
 ## 1. Dependencies
 
@@ -27,8 +27,8 @@ In the project directory, you can run:
 Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## 🚨 Be careful 🚨
+## 🚨 Be careful 🚨 
 
-If you get lost and get to the page 404, Enemies could be hiding there ...
+If you get lost and get to the page 404, Enemies could be hiding there ... 😱
 
 ### Thanks you, have a nice surfing on my website!
