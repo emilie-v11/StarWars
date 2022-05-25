@@ -1,10 +1,13 @@
 .css-1scal0h-MuiPaginationItem-root,
-.css-yx0nvq-MuiButtonBase-root-MuiPaginationItem-root, 
-.css-s1jfdj-MuiButtonBase-root-MuiPaginationItem-root {
+.css-yx0nvq-MuiButtonBase-root-MuiPaginationItem-root,
+.css-s1jfdj-MuiButtonBase-root-MuiPaginationItem-root,
+.css-1bfr02t,
+.css-ezc4fw {
     color: #fff !important;
 }
 
-.css-s1jfdj-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected, .css-1bfr02t.Mui-selected, 
+.css-s1jfdj-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected,
+.css-1bfr02t.Mui-selected,
 .css-1bfr02t.Mui-selected:hover {
     background-color: #ffc106 !important;
     color: black !important;
