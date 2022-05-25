@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 -   [Starwars API](https://swapi.dev)
 -   [See my Website](https://stellular-bublanina-375797.netlify.app/) 👋
 
-<kbd>![Starwars table](./Starwars.png)</kbd>
+<kbd>![Starwars table](./Starwars-table.png)</kbd>
 
 ## 1. Dependencies
 
@@ -34,4 +34,3 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 If you get lost and get to the page 404, Enemies could be hiding there ... 😱
 
 <kbd>![Starwars 404-page](./Starwars-404.png)</kbd>
-
