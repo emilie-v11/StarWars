@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import InformationSheet from '../../components/InformationSheet/InformationSheet';
-import LoaderSpinner from '../../components/LoaderSpinner/LoaderSpinner';
-import { getPersonById } from '../../redux/actions/peopleAction';
+import InformationSheet from '@/components/InformationSheet/InformationSheet';
+import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner';
+import { getPersonById } from '@/redux/actions/peopleAction';
 
 /**
  * Details Page - For more informations of the active personn (by ID) - Access to this page with button "view" in the Table

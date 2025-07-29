@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import LoaderSpinner from '../../components/LoaderSpinner/LoaderSpinner';
-import PaginationRounded from '../../components/Pagination/Pagination';
-import TableComponent from '../../components/Table/TableComponent';
-import { getPeople } from '../../redux/actions/peopleAction';
+import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner';
+import PaginationRounded from '@/components/Pagination/Pagination';
+import TableComponent from '@/components/Table/TableComponent';
+import { getPeople } from '@/redux/actions/peopleAction';
 
 /**
  * Index Page - Homepage - Contain the Table and Pagination

@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Table } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';

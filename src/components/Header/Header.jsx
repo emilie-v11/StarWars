@@ -17,13 +17,12 @@ const Header = ({ title, colorTitle }) => {
     const [personName, setPersonName] = useState(null);
 
     useEffect(() => {
-        if ({ currentPerson } !== undefined && !isLoading) {
+        if (currentPerson !== undefined && !isLoading) {
             const currentPersonName = currentPerson.name;
-            return setPersonName(currentPersonName);
-        }
-        return () => {
+            setPersonName(currentPersonName);
+        } else {
             setPersonName(null);
-        };
+        }
     }, [dispatch, currentPerson, isLoading]);
 
     return (
