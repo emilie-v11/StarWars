@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { memo } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
@@ -13,19 +14,19 @@ const TableComponent = ({ people }) => {
             <thead>
                 <tr>
                     <th className="p-1 py-3 p-sm-3">Name</th>
-                    <th className="p-1 py-3 p-sm-3">Height</th>
-                    <th className="p-1 py-3 p-sm-3">Gender</th>
-                    <th className="p-1 py-3 p-sm-3">Actions</th>
+                    {/* <th className="p-1 py-3 p-sm-3">Height</th>
+                    <th className="p-1 py-3 p-sm-3">Gender</th> */}
+                    <th className="p-1 py-3 p-sm-3 text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                {people.map((character, index) => (
-                    <tr key={index}>
-                        <td className="p-1 py-3 p-sm-3">{character.name}</td>
-                        <td className="p-1 py-3 p-sm-3">{character.height} cm</td>
-                        <td className="p-1 py-3 p-sm-3 text-capitalize">{character.gender}</td>
-                        <td className="p-1 py-3 p-sm-3 position-relative">
-                            <NavLink to={`people/${character.url.slice(29)}`}>
+                { people.map((character, index) => (
+                    <tr key={ index }>
+                        <td className="p-1 py-3 p-sm-3">{ character.name }</td>
+                        {/* <td className="p-1 py-3 p-sm-3">{ character.height } cm</td>
+                        <td className="p-1 py-3 p-sm-3 text-capitalize">{ character.gender }</td> */}
+                        <td className="p-1 py-3 p-sm-3 position-relative w-25">
+                            <NavLink to={ `people/${character.id}` }>
                                 <Button
                                     className="position-absolute top-50 start-50 translate-middle py-1 px-lg-4"
                                     variant="warning"
@@ -35,7 +36,7 @@ const TableComponent = ({ people }) => {
                             </NavLink>
                         </td>
                     </tr>
-                ))}
+                )) }
             </tbody>
         </Table>
     );
@@ -45,4 +46,4 @@ TableComponent.propTypes = {
     people: PropTypes.array,
 };
 
-export default TableComponent;
+export default memo(TableComponent);

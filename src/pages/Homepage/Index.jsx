@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner';
 import PaginationRounded from '@/components/Pagination/Pagination';
@@ -13,36 +13,36 @@ const Index = () => {
     const dispatch = useDispatch();
 
     const isLoading = useSelector(state => state.people.isLoading);
-    const currentPage = useSelector(state => state.people.currentPage);
     const people = useSelector(state => state.people.characters);
-    const count = useSelector(state => state.people.count);
-
-    const [page, setPage] = useState(currentPage === null ? 1 : currentPage);
+    // const totalRecords = useSelector(state => state.people.totalRecords);
+    const totalPages = useSelector(state => state.people.totalPages);
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
-        dispatch(getPeople(`?page=${page}`));
+        dispatch(getPeople(page));
     }, [dispatch, page]);
+    
+    const characters = [...people];
 
     const handleChange = (event, value) => {
+        dispatch(getPeople(value));
         setPage(value);
     };
-
-    const totalPages = Math.ceil(count / 10);
-
-    if (isLoading || count === isNaN) {
+    
+    if (isLoading || totalPages === isNaN) {
         return <LoaderSpinner />;
     }
 
     return (
         <main className="Main-Homepage container p-1 pt-4 p-sm-3 mt-5">
-            <TableComponent people={people} />
+            <TableComponent people={ characters } />
 
             <section className="d-flex justify-content-end text-light pt-2">
                 <h2 className="visually-hidden">General table of Starwars characters</h2>
                 <PaginationRounded
-                    page={page}
-                    handleChange={handleChange}
-                    totalPages={totalPages}
+                    page={ page }
+                    handleChange={ handleChange }
+                    totalPages={ totalPages }
                 />
             </section>
         </main>

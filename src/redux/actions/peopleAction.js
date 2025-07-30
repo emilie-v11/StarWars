@@ -15,26 +15,25 @@ import {
  * @property {function} getPersonById - id @param -  function for one person by ID, use Starwars service file and API attributes
  */
 
-export const getPeople = (option) => (dispatch) => {
-  return StarwarsService.getAPIPeople(peopleAttributesURL + option).then(
-    (response) => {
-      dispatch({
-        type: GET_PEOPLE,
-      });
+export const getPeople = (option) => async (dispatch) => {
+  try {
+    dispatch({
+      type: GET_PEOPLE,
+    });
 
-      dispatch({
-        type: GET_PEOPLE_SUCCESS,
-        payload: response,
-      });
-    },
-    (error) => {
-      dispatch({
-        type: GET_PEOPLE_FAIL,
-        payload: error,
-      });
-      console.log('Fail to getPeople', error);
-    }
-  );
+    const response = await StarwarsService.getAPIPeople(option);
+
+    dispatch({
+      type: GET_PEOPLE_SUCCESS,
+      payload: response,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_PEOPLE_FAIL,
+      payload: error,
+    });
+    console.log('Fail to getPeople', error);
+  }
 };
 
 export const getPersonById = (id) => (dispatch) => {
