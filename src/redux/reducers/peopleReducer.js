@@ -40,8 +40,6 @@ const people = (state = initialState, action) => {
         ...state,
         isLoading: false,
         error: false,
-        totalRecords: payload.totalRecords,
-        totalPages: payload.totalPages,
         characters: payload.characters,
       };
 

@@ -21,7 +21,7 @@ export const getPeople = (option) => async (dispatch) => {
       type: GET_PEOPLE,
     });
 
-    const response = await StarwarsService.getAPIPeople(option);
+    const response = await StarwarsService.getApiAllPeople(option);
 
     dispatch({
       type: GET_PEOPLE_SUCCESS,
@@ -37,7 +37,7 @@ export const getPeople = (option) => async (dispatch) => {
 };
 
 export const getPersonById = (id) => (dispatch) => {
-  return StarwarsService.getAPIPersonById(id).then(
+  return StarwarsService.getApiPersonById(id).then(
     (response) => {
       dispatch({
         type: GET_PERSON_BY_ID,
