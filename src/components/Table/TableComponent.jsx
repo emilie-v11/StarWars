@@ -14,8 +14,8 @@ const TableComponent = ({ people }) => {
             <thead>
                 <tr>
                     <th className="p-1 py-3 p-sm-3">Name</th>
-                    {/* <th className="p-1 py-3 p-sm-3">Height</th>
-                    <th className="p-1 py-3 p-sm-3">Gender</th> */}
+                    <th className="p-1 py-3 p-sm-3">Height</th>
+                    <th className="p-1 py-3 p-sm-3">Gender</th>
                     <th className="p-1 py-3 p-sm-3 text-center">Actions</th>
                 </tr>
             </thead>
@@ -23,8 +23,8 @@ const TableComponent = ({ people }) => {
                 { people.map((character, index) => (
                     <tr key={ index }>
                         <td className="p-1 py-3 p-sm-3">{ character.name }</td>
-                        {/* <td className="p-1 py-3 p-sm-3">{ character.height } cm</td>
-                        <td className="p-1 py-3 p-sm-3 text-capitalize">{ character.gender }</td> */}
+                        <td className="p-1 py-3 p-sm-3">{ character.height } cm</td>
+                        <td className="p-1 py-3 p-sm-3 text-capitalize">{ character.gender }</td>
                         <td className="p-1 py-3 p-sm-3 position-relative w-25">
                             <NavLink to={ `people/${character.id}` }>
                                 <Button

@@ -13,29 +13,28 @@ const Index = () => {
     const dispatch = useDispatch();
 
     const isLoading = useSelector(state => state.people.isLoading);
-    const people = useSelector(state => state.people.characters);
-    // const totalRecords = useSelector(state => state.people.totalRecords);
-    const totalPages = useSelector(state => state.people.totalPages);
+    const characters = useSelector(state => state.people.characters);
     const [page, setPage] = useState(1);
 
     useEffect(() => {
-        dispatch(getPeople(page));
+        dispatch(getPeople());
     }, [dispatch, page]);
-    
-    const characters = [...people];
+
+    const pageSize = 10; // Number of people per page
+    const totalPages = Math.ceil(characters.length / pageSize);
+    const paginatedCharacters = characters.slice((page - 1) * pageSize, page * pageSize);
 
     const handleChange = (event, value) => {
-        dispatch(getPeople(value));
         setPage(value);
     };
-    
+
     if (isLoading || totalPages === isNaN) {
         return <LoaderSpinner />;
     }
 
     return (
         <main className="Main-Homepage container p-1 pt-4 p-sm-3 mt-5">
-            <TableComponent people={ characters } />
+            <TableComponent people={ paginatedCharacters } />
 
             <section className="d-flex justify-content-end text-light pt-2">
                 <h2 className="visually-hidden">General table of Starwars characters</h2>

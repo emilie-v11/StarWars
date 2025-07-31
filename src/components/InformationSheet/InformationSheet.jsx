@@ -20,9 +20,9 @@ const InformationSheet = ({ currentPerson }) => {
                 <InformationItem categorie="Skin Color" info={currentPerson.skin_color} />
                 <InformationItem categorie="Eye Color" info={currentPerson.eye_color} />
                 <InformationItem categorie="Birth Year" info={currentPerson.birth_year} />
-                <InformationItem categorie="Homeworld" info={ currentPerson.homeworld.name } />
+                <InformationItem categorie="Homeworld" info={ currentPerson.homeworld } />
                 <InformationItem categorie="Films" info={currentPerson.films} />
-                {/* <InformationItem categorie="Vehicles" info={currentPerson.vehicles} /> */}
+                <InformationItem categorie="Vehicles" info={currentPerson.vehicles} />
             </ul>
         </>
     );
