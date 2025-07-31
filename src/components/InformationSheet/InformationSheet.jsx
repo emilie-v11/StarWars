@@ -7,7 +7,6 @@ import InformationItem from './InformationItem';
  */
 
 const InformationSheet = ({ currentPerson }) => {
-    console.log('currentPerson', currentPerson);
     return (
         <>
             <div className="position-absolute top-0 bottom-0 start-0 end-0 bg-dark rounded-3 opacity-75 z-index-1"></div>
