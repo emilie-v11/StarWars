@@ -6,8 +6,8 @@ import { peopleAttributesURL } from './API-attributesURL';
  * Class with method for the API Calls
  * @class {class} StarwarsService
  * @method async getAPIData
- * @method async getAPIPeople
- * @method async getAPIPersonById
+ * @method async getApiAllPeople
+ * @method async getApiPersonById
  *
  * @returns data's informations about API
  */
@@ -20,13 +20,17 @@ class StarwarsService {
    *
    * @returns data's informations about a full URL to API
    */
+
+  constructor() {
+    this.cachedPeople = null;
+  }
   async getAPIData(fullURL) {
     try {
       const response = await axios.get(fullURL);
       return response.data;
     } catch (error) {
-      console.log('error getAPIPeople', error);
-      throw new Error('Failed to fetch getAPIPeople data', error);
+      console.log('error getApiAllPeople', error);
+      throw new Error('Failed to fetch getApiAllPeople data', error);
     }
   }
 
@@ -36,64 +40,33 @@ class StarwarsService {
    *
    * @returns data's characters informations about endpoints to API
    */
-  async getAPIPeople(attribute) {
-    try {
-      const response = await axios.get(
-        `${baseURL}${peopleAttributesURL}?page=${attribute}&limit=10`
-      );
-      // On ne garde que les infos de base
-      const characters = response.data.results.map((person) => ({
-        id: person.uid,
-        name: person.name,
-        url: person.url,
-      }));
+  async getApiAllPeople() {
+    if (this.cachedPeople) {
+      return { characters: this.cachedPeople };
+    }
 
+    try {
+      const response = await axios.get(`${baseURL}${peopleAttributesURL}`);
+      const allPeople = response.data;
+
+      const characters = allPeople.map((person) => {
+        const idMatch = person.url.match(/people\/(\d+)/);
+        return {
+          id: idMatch ? Number(idMatch[1]) : null, //? idMatch[1] : null,
+          ...person,
+        };
+      });
+      console.log('characters', characters);
+
+      this.cachedPeople = characters;
       return {
-        totalRecords: response.data.total_records,
-        totalPages: response.data.total_pages,
         characters,
       };
     } catch (error) {
-      console.error('error getAPIPeople', error);
+      console.error('error getApiAllPeople', error);
       throw error;
     }
   }
-  /**
-   * Make request to get the characters informations with a given ID and endpoints
-   * Some value in the person object are URL & not string, so we need to use an other method : getAPIData(fullURL).
-   * Value concerned : homeworld, films & vehicles
-   * / 
-  // async getAPIPeople() {
-  //   try {
-  //     const response = await axios.get(`${baseURL}${peopleAttributesURL}?page=1&limit=100`);
-  //     const results = response.data.results;
-
-  //     const detailsResponses = await axios.all(
-  //       results.map((person) => axios.get(person.url))
-  //     );
-
-  //     const charactersWithDetails = detailsResponses.map((res) => {
-  //       const detail = res.data.result.properties;
-  //       return {
-  //         id: res.data.result.uid,
-  //         name: detail.name,
-  //         height: detail.height,
-  //         gender: detail.gender,
-  //         ...detail,
-  //       };
-  //     });
-
-  //     return {
-  //       totalRecords: response.data.total_records,
-  //       totalPages: Math.ceil(response.data.total_records / 10),
-  //       characters: charactersWithDetails,
-  //     };
-
-  //   } catch (error) {
-  //     console.log('error getAPIPeople', error);
-  //     throw new Error('Failed to fetch getAPIPeople data', error);
-  //   }
-  // }
 
   /**
    * Make request to get the characters informations with a given ID and endpoints
@@ -105,104 +78,89 @@ class StarwarsService {
    * @returns data's characters by ID informations about endpoints to API
    *
    */
-  async getAPIPersonById(id) {
-    let result = {};
-
+  async getApiPersonById(id) {
     try {
-      const response = await axios.get(`${baseURL}${peopleAttributesURL}${id}`);
-      const properties = response.data.result?.properties;
-      const uid = response.data.result?.uid;
-      result = { ...properties, id: uid };
-
-      if (response) {
-        result = { ...properties, id: uid };
+      if (!this.cachedPeople) {
+        await this.getApiAllPeople();
       }
 
-      //   if (result.homeworld === undefined) {
-      //     result.homeworld = 'N/A';
-      //   }
-      //   const homeworldDetail = await this.getAPIData(result.homeworld);
-      //   console.log('homeworldDetail', homeworldDetail.result.properties);
-      //     const planet = { homeworld: homeworldDetail.result.properties.name };
-      //     result.planet = planet.homeworld;
+      const charactersById = this.cachedPeople.find(
+        (person) => person.id === Number(id)
+      );
+      console.log('charactersById', charactersById);
 
-      // Homeworld
-      if (result.homeworld === undefined || result.homeworld === null) {
-        result.homeworld = 'N/A';
+      if (!charactersById) {
+        throw new Error(`Character with ID ${id} not found`);
       }
-      const getHomeworld = await this.getAPIData(result.homeworld);
-      const homeworldDetail = { homeworld: getHomeworld.result.properties };
-      // console.log('homeworldDetail', homeworldDetail);
-      result.homeworld = homeworldDetail.homeworld;
 
-      //   let filmsArray = [];
-      //   let films;
+      const result = { ...charactersById };
+      console.log('result', result);
 
-      //   const filmsResult = await result.films;
+      // Homeworld cache
+      if (
+        result.homeworld === undefined ||
+        result.homeworld === null ||
+        result.homeworld.length === 0
+      ) {
+        result.homeworld = 'Unknown';
+      }
+      if (result.homeworld && typeof result.homeworld === 'string') {
+        if (!this.cachedHomeworlds) this.cachedHomeworlds = {};
+        if (!this.cachedHomeworlds[result.homeworld]) {
+          const homeworldData = await this.getAPIData(result.homeworld);
+          this.cachedHomeworlds[result.homeworld] = homeworldData.name;
+        }
+        result.homeworld = this.cachedHomeworlds[result.homeworld];
+      }
 
-      //   await Promise.all(
-      //     filmsResult.map(async (filmURL) => {
-      //       const filmsStringArray = await this.getAPIData(filmURL);
+      // Films cache
+      if (
+        result.films === undefined ||
+        result.films === null ||
+        result.films.length === 0
+      ) {
+        result.films = 'Unknown';
+      }
+      if (Array.isArray(result.films)) {
+        if (!this.cachedFilms) this.cachedFilms = {};
+        const filmsTitles = await Promise.all(
+          result.films.map(async (filmUrl) => {
+            if (!this.cachedFilms[filmUrl]) {
+              const filmData = await this.getAPIData(filmUrl);
+              this.cachedFilms[filmUrl] = filmData.title;
+            }
+            return this.cachedFilms[filmUrl];
+          })
+        );
+        result.films = filmsTitles.join(', ');
+      }
 
-      //       filmsArray.push(filmsStringArray.title);
-      //       films = filmsArray.join(' , ');
-      //       films = { films: films };
+      // Vehicles cache
+      if (
+        result.vehicles === undefined ||
+        result.vehicles === null ||
+        result.vehicles.length === 0
+      ) {
+        result.vehicles = 'Unknown';
+      }
+      if (Array.isArray(result.vehicles)) {
+        if (!this.cachedVehicles) this.cachedVehicles = {};
+        const vehiclesTitles = await Promise.all(
+          result.vehicles.map(async (vehicleUrl) => {
+            if (!this.cachedVehicles[vehicleUrl]) {
+              const vehicleData = await this.getAPIData(vehicleUrl);
+              this.cachedVehicles[vehicleUrl] = vehicleData.name;
+            }
+            return this.cachedVehicles[vehicleUrl];
+          })
+        );
+        result.vehicles = vehiclesTitles.join(', ');
+      }
 
-      //       return films;
-      //     })
-      //   );
-
-      //   if (Array.isArray(result.films)) {
-      //     const films = await Promise.all(
-      //       result.films.map(async (filmURL) => {
-      //         const filmDetails = await this.getAPIData(filmURL);
-      //         return filmDetails.title || 'N/A';
-      //       })
-      //     );
-      //     result.films = films.join(', ');
-      //   }
-
-      // Films (look in /films)
-      const getFilms = await axios.get(`${baseURL}films`);
-      const filmsList = getFilms.data.result;
-      const characterUrl = `${baseURL}people/${id}`;
-
-      const filmsForCharacter = filmsList
-        .filter((film) => film.properties.characters.includes(characterUrl))
-        .map((film) => film.properties.title);
-
-      result.films = filmsForCharacter.length
-        ? filmsForCharacter.join(', ')
-        : 'N/A';
-
-      // Vehicles
-      //   let vehiclesArray = [];
-      //   let vehicles;
-
-      //   const vehiclesResult = await result.vehicles;
-
-      //   // if the person haven't vehicles
-      //   if (vehiclesResult.length === undefined) {
-      //     vehicles = { vehicles: 'N/A' };
-      //   }
-
-      //   await Promise.all(
-      //     vehiclesResult.map(async (vehicleURL) => {
-      //       const vehiclesStringArray = await this.getAPIData(vehicleURL);
-
-      //       vehiclesArray.push(vehiclesStringArray.name);
-      //       vehicles = vehiclesArray.join(' , ');
-      //       vehicles = { vehicles: vehicles };
-
-      //       return vehicles;
-      //     })
-      //   );
-
-      // result = { ...result, ...planet, ...films, ...vehicles };
-      //   console.log('result', result);
       return result;
+
     } catch (error) {
-      console.log('error getAPIPersonById', error);
+      console.log('error getApiPersonById', error);
     }
   }
 }
