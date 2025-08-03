@@ -56,7 +56,6 @@ class StarwarsService {
           ...person,
         };
       });
-      console.log('characters', characters);
 
       this.cachedPeople = characters;
       return {
@@ -87,14 +86,12 @@ class StarwarsService {
       const charactersById = this.cachedPeople.find(
         (person) => person.id === Number(id)
       );
-      console.log('charactersById', charactersById);
 
       if (!charactersById) {
         throw new Error(`Character with ID ${id} not found`);
       }
 
       const result = { ...charactersById };
-      console.log('result', result);
 
       // Homeworld cache
       if (
