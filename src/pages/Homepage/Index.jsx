@@ -11,20 +11,19 @@ import { getPeople } from '@/redux/actions/peopleAction';
 
 const Index = () => {
     const dispatch = useDispatch();
-
     const isLoading = useSelector(state => state.people.isLoading);
     const characters = useSelector(state => state.people.characters);
     const [page, setPage] = useState(1);
 
     useEffect(() => {
         dispatch(getPeople());
-    }, [dispatch, page]);
+    }, [dispatch]);
 
     const pageSize = 10; // Number of people per page
     const totalPages = Math.ceil(characters.length / pageSize);
     const paginatedCharacters = characters.slice((page - 1) * pageSize, page * pageSize);
 
-    const handleChange = (event, value) => {
+    const handleChange = (_event, value) => {
         setPage(value);
     };
 
