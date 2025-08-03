@@ -21,9 +21,6 @@
     "redux-thunk": "^2.4.1",
     "vite": "^7.0.6"
   },
-  "overrides": {
-    "autoprefixer": "10.4.5"
-  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
