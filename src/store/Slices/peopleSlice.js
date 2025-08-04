@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { peopleApi } from '@/services/peopleApi';
 
 const initialState = {
-  page: 1, // Default page number
+  page: 1,
   currentPerson: null,
 };
 
