@@ -5,6 +5,7 @@ import { useGetPersonByIdQuery } from '@/services/peopleApi';
 import { clearCurrentPerson } from '@/store/slices/peopleSlice';
 import InformationSheet from '@/components/InformationSheet/InformationSheet';
 import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner';
+import NotFound from '@/pages/NotFound/NotFound';
 
 /**
  * Details Page - For more informations of the active personn (by ID) - Access to this page with button "view" in the Table
@@ -23,7 +24,7 @@ const Details = () => {
   }, [dispatch]);
 
   if (isLoading) return <LoaderSpinner />;
-  if (error) return <div>Error: { error.message }</div>;
+  if (error) return <NotFound />;
 
   return (
     <main className="Main-Details container mt-5 position-relative text-white py-2">
