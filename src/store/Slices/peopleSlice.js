@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { peopleApi } from '../../services/peopleApi';
+import { peopleApi } from '@/services/peopleApi';
 
 const initialState = {
   page: 1, // Default page number
