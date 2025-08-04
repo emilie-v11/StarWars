@@ -1,33 +1,27 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import InformationSheet from '@/components/InformationSheet/InformationSheet';
 import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner';
-import { getPersonById } from '@/redux/actions/peopleAction';
+import { useGetPersonByIdQuery } from '../../services/peopleApi';
+// import { useSelector } from 'react-redux';
 
 /**
  * Details Page - For more informations of the active personn (by ID) - Access to this page with button "view" in the Table
  */
 const Details = () => {
     const { id } = useParams();
-    const dispatch = useDispatch();
-    const isLoading = useSelector(state => state.people.isLoading);
-    const currentPerson = useSelector(state => state.people.person);
+    const { data: person, isLoading, error } = useGetPersonByIdQuery(Number(id), {
+        skip: !id,
+    });
 
-    useEffect(() => {
-        dispatch(getPersonById(`${id}`));
-    }, [dispatch, id]);
-
-    if (isLoading || Object.entries(currentPerson).length === 0) {
-        return <LoaderSpinner />;
-    }
+    if (isLoading) return <LoaderSpinner />;
+    if (error) return <div>Error: { error.message }</div>;
 
     return (
         <main className="Main-Details container mt-5 position-relative text-white py-2">
             <section>
-                <h2 className="visually-hidden"> Information sheet of {currentPerson.name}</h2>
+                <h2 className="visually-hidden"> Information sheet of {person.name}</h2>
 
-                <InformationSheet currentPerson={currentPerson} />
+                <InformationSheet person={person} />
             </section>
         </main>
     );

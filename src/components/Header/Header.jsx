@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner';
 import CustomSeparator from '../Breadcrumbs/CustomSeparator';
+import { useSelector } from 'react-redux';
+import { useGetAllPeopleQuery } from '../../services/peopleApi';
 
 /**
  * Header Component with title, and breadcrumb trail
@@ -10,27 +11,17 @@ import CustomSeparator from '../Breadcrumbs/CustomSeparator';
  */
 
 const Header = ({ title, colorTitle }) => {
-    const dispatch = useDispatch();
-    const isLoading = useSelector(state => state.people.isLoading);
-    const currentPerson = useSelector(state => state.people.person);
+    const { isLoading } = useGetAllPeopleQuery();
+    const currentPerson = useSelector(state => state.people.currentPerson || {});
 
-    const [personName, setPersonName] = useState(null);
-
-    useEffect(() => {
-        if (currentPerson !== undefined && !isLoading) {
-            const currentPersonName = currentPerson.name;
-            setPersonName(currentPersonName);
-        } else {
-            setPersonName(null);
-        }
-    }, [dispatch, currentPerson, isLoading]);
+    if (isLoading) return <LoaderSpinner />;
 
     return (
         <header className="container mt-5">
-            <h1 className="text-md-start mb-4" style={{ color: colorTitle }}>
-                {title}
+            <h1 className="text-md-start mb-4" style={ { color: colorTitle } }>
+                { title }
             </h1>
-            <CustomSeparator personName={personName} currentPerson={currentPerson} />
+            <CustomSeparator currentPerson={ currentPerson } />
         </header>
     );
 };
