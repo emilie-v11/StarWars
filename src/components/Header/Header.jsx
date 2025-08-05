@@ -3,6 +3,7 @@ import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner';
 import CustomSeparator from '../Breadcrumbs/CustomSeparator';
 import { useSelector } from 'react-redux';
 import { useGetAllPeopleQuery } from '../../services/peopleApi';
+import { Container, Typography } from '@mui/material';
 
 /**
  * Header Component with title, and breadcrumb trail
@@ -12,17 +13,22 @@ import { useGetAllPeopleQuery } from '../../services/peopleApi';
 
 const Header = ({ title, colorTitle }) => {
     const { isLoading } = useGetAllPeopleQuery();
-    const currentPerson = useSelector(state => state.people.currentPerson || {});
+    const currentPerson = useSelector(
+        (state) => state.people.currentPerson || {}
+    );
 
     if (isLoading) return <LoaderSpinner />;
-
     return (
-        <header className="container mt-5">
-            <h1 className="text-md-start mb-4" style={ { color: colorTitle } }>
+        <Container component='header' sx={ { marginTop: '2rem' } }>
+            <Typography
+                variant='h1'
+                sx={{ textAlign: 'start', marginBottom: '1.5rem', fontSize: '5rem' }}
+                style={{ color: colorTitle }}
+            >
                 { title }
-            </h1>
+            </Typography>
             <CustomSeparator currentPerson={ currentPerson } />
-        </header>
+        </Container>
     );
 };
 

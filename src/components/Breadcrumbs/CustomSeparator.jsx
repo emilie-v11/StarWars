@@ -3,6 +3,7 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { Box, Typography } from '@mui/material';
 
 /**
  * A breadcrumb trail Component - Nav in Header
@@ -18,13 +19,12 @@ export default function CustomSeparator({ currentPerson }) {
             Home
         </Link>,
         <Link underline="hover" key="2" color="inherit" href="#">
-            { !isEmpty && <span>{ currentPerson.name }</span> }
-            <span className="visually-hidden">Next</span>
+            { !isEmpty ? <span>{ currentPerson.name }</span> : <span>...</span>}
         </Link>,
     ];
 
     return (
-        <div className="position-relative">
+        <Box sx={ { position: 'relative' } }>
             <Stack spacing={ 2 }>
                 <Breadcrumbs
                     separator={ <NavigateNextIcon fontSize="small" /> }
@@ -33,12 +33,7 @@ export default function CustomSeparator({ currentPerson }) {
                     { breadcrumbs }
                 </Breadcrumbs>
             </Stack>
-            { isEmpty && (
-                <span className="position-absolute top-50 start-0 translate-middle-y ms-5 ps-4">
-                    ...
-                </span>
-            ) }
-        </div>
+        </Box>
     );
 }
 
