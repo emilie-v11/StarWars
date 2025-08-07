@@ -11,7 +11,7 @@ const renderLoader = () => <LoaderSpinner />;
 
 function App() {
     return (
-        <BrowserRouter className="container my-4">
+        <BrowserRouter>
             <Header title="Starwars characters" colorTitle="#FFC106" />
             <Suspense fallback={renderLoader()}>
                 <Routes>

@@ -14,7 +14,7 @@ export default function PaginationControlled({ page, handleChange, totalPages })
     return (
         <Stack spacing={2}>
             <Pagination
-                className="bg-dark "
+                id="pagination"
                 count={totalPages}
                 variant="text"
                 shape="rounded"

@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import { Container } from '@mui/material';
 import './NotFound.css';
 
 /**
@@ -6,12 +7,11 @@ import './NotFound.css';
  */
 const NotFound = () => {
     return (
-        <main className="Main-Error404 position-relative">
-            <div className="Image-404 position-absolute top-50 start-50 translate-middle">
-                <div className="Content-404 position-absolute top-50 start-50 translate-middle">
-                    <span className="Number-404">404</span>
+        <main className="Main-Error404">
+            <div className="Image-404">
+                <div className="Content-404">
+                    <p className="Number-404">404</p>
                     <p className="Text-404">Oops! Let's go back quietly ...</p>
-
                     <NavLink className="Back-Home" to="/">
                         Back to the home page
                     </NavLink>

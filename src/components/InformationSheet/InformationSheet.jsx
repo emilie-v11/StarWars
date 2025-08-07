@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Box, List } from '@mui/material';
 import InformationItem from './InformationItem';
 
 /**
@@ -8,23 +9,34 @@ import InformationItem from './InformationItem';
 
 const InformationSheet = ({ person }) => {
     return (
-        <>
-            <div className="position-absolute top-0 bottom-0 start-0 end-0 bg-dark rounded-3 opacity-75 z-index-1"></div>
+        <Box component='section'>
+            <h2 className='visually-hidden'>Information sheet of { person.name }</h2>
+            <Box
+                sx={ {
+                    backgroundColor: 'rgba(33, 37, 41, 0.75)',
+                    borderRadius: '5px',
+                    zIndex: -1,
+                    width: '100%',
+                    height: '100%',
+                    padding: '1.5rem',
+                } }
+            >
 
-            <ul className="fs-5 text-capitalize position-relative z-index-3 opacity-100">
-                <InformationItem categorie="Name" info={ person.name } />
-                <InformationItem categorie="Gender" info={ person.gender } />
-                <InformationItem categorie="Height" info={ person.height } />
-                <InformationItem categorie="Mass" info={ person.mass } />
-                <InformationItem categorie="Hair Color" info={ person.hair_color } />
-                <InformationItem categorie="Skin Color" info={ person.skin_color } />
-                <InformationItem categorie="Eye Color" info={ person.eye_color } />
-                <InformationItem categorie="Birth Year" info={ person.birth_year } />
-                <InformationItem categorie="Homeworld" info={ person.homeworld } />
-                <InformationItem categorie="Films" info={ person.films } />
-                <InformationItem categorie="Vehicles" info={ person.vehicles } />
-            </ul>
-        </>
+                <List sx={ { position: 'relative', zIndex: 3, opacity: 1 } }>
+                    <InformationItem categorie='Name' info={ person.name } />
+                    <InformationItem categorie='Gender' info={ person.gender } />
+                    <InformationItem categorie='Height' info={ person.height } />
+                    <InformationItem categorie='Mass' info={ person.mass } />
+                    <InformationItem categorie='Hair Color' info={ person.hair_color } />
+                    <InformationItem categorie='Skin Color' info={ person.skin_color } />
+                    <InformationItem categorie='Eye Color' info={ person.eye_color } />
+                    <InformationItem categorie='Birth Year' info={ person.birth_year } />
+                    <InformationItem categorie='Homeworld' info={ person.homeworld } />
+                    <InformationItem categorie='Films' info={ person.films } />
+                    <InformationItem categorie='Vehicles' info={ person.vehicles } />
+                </List>
+            </Box>
+        </Box>
     );
 };
 

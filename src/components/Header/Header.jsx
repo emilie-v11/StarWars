@@ -19,10 +19,10 @@ const Header = ({ title, colorTitle }) => {
 
     if (isLoading) return <LoaderSpinner />;
     return (
-        <Container component='header' sx={ { marginTop: '2rem' } }>
+        <Container component='header' sx={{ paddingTop: '3rem' }}>
             <Typography
                 variant='h1'
-                sx={{ textAlign: 'start', marginBottom: '1.5rem', fontSize: '5rem' }}
+                sx={{ textAlign: 'start', marginBottom: '1.5rem', fontSize: '4.5rem', fontWeight: 700 }}
                 style={{ color: colorTitle }}
             >
                 { title }

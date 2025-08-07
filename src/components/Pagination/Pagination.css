@@ -1,3 +1,7 @@
+#pagination.MuiPagination-root {
+    background-color: #212529;
+}
+
 .MuiPaginationItem-root,
 .MuiButtonBase-root-MuiPaginationItem-root,
 .MuiButtonBase-root-MuiPaginationItem-root {
@@ -10,4 +14,8 @@
     background-color: #ffc106 !important;
     color: black !important;
     font-weight: 700 !important;
+}
+
+.MuiPaginationItem-root:hover {
+    background-color: #343a40;
 }

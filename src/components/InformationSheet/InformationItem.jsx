@@ -1,3 +1,4 @@
+import { ListItem, ListItemText, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 
 /**
@@ -5,13 +6,17 @@ import PropTypes from 'prop-types';
  * @property {String} categorie - Information categorie
  * @property {String} info - information
  */
-
+// TODO: fix alignment of the text in the ListItemText
 const InformationItem = ({ categorie, info }) => {
     return (
-        <li className="p-2 ps-0">
-            <span className="fw-bold pe-2">{categorie} :</span>
-            {info}
-        </li>
+        <ListItem key={ categorie } sx={ { minWidth: '100%', alignItems: 'flex-start' } }>
+            <ListItemText>
+                <span style={ { fontWeight: 700, paddingRight: '1rem', color: '#FFC106' } }>
+                    { `${categorie} : ` }
+                </span>
+                { info }
+            </ListItemText>
+        </ListItem>
     );
 };
 

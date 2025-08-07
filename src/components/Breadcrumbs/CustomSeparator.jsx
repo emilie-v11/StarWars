@@ -14,23 +14,19 @@ export default function CustomSeparator({ currentPerson }) {
     // Add '...' for the homepage, when currentPerson is empty
     const isEmpty = Object.keys(currentPerson).length === 0;
 
-    const breadcrumbs = [
-        <Link underline="hover" key="1" color="inherit" href="/">
-            Home
-        </Link>,
-        <Link underline="hover" key="2" color="inherit" href="#">
-            { !isEmpty ? <span>{ currentPerson.name }</span> : <span>...</span>}
-        </Link>,
-    ];
-
     return (
-        <Box sx={ { position: 'relative' } }>
+        <Box sx={ { position: 'relative'} }>
             <Stack spacing={ 2 }>
                 <Breadcrumbs
                     separator={ <NavigateNextIcon fontSize="small" /> }
                     aria-label="breadcrumb"
                 >
-                    { breadcrumbs }
+                    <Link underline="hover" key="1" color="inherit" href="/">
+                        Home
+                    </Link>,
+                    <Link underline="hover" key="2" color="inherit" href="#">
+                        { !isEmpty ? <span>{ currentPerson.name }</span> : <span>...</span> }
+                    </Link>
                 </Breadcrumbs>
             </Stack>
         </Box>

@@ -47,7 +47,7 @@ const TableComponent = ({ people }) => {
             elevation={ 0 }
             sx={ {
                 backgroundColor: 'transparent',
-                marginBottom: '1rem',
+                marginY: '2rem',
             } }
         >
             <Table
@@ -59,8 +59,7 @@ const TableComponent = ({ people }) => {
                     '& .MuiTableCell-root': {
                         maxHeight: '57px',
                         fontSize: '16px',
-                        fontFamily:
-                            'Helvetica Neue,sans-serif',
+                        fontFamily: 'Orbitron, "Helvetica Neue", sans-serif',
                     },
                 } }
             >

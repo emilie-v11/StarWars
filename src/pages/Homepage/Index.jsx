@@ -4,7 +4,7 @@ import PaginationRounded from '@/components/Pagination/Pagination';
 import TableComponent from '@/components/Table/TableComponent';
 import { setPage } from '@/store/slices/peopleSlice';
 import { useGetAllPeopleQuery } from '../../services/peopleApi';
-import { Container, Typography } from '@mui/material';
+import { Container, Typography, Box } from '@mui/material';
 
 /**
  * Index Page - Homepage - Contain the Table and Pagination
@@ -24,18 +24,18 @@ const Index = () => {
     if (error) return <div>Error: { error.message }</div>;
 
     return (
-        <Container component="main" className="Main-Homepage ">
-            { /* container p-1 pt-4 p-sm-3 mt-5 */ }
+        <Container component="main" sx={ { marginTop: '3rem', paddingBottom: '2rem' } }>
             <TableComponent people={ pagedPeople } />
-
-            <section className="d-flex justify-content-end text-light pt-2">
-                <Typography variant='h2' className="visually-hidden">General table of Starwars characters</Typography>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Typography variant='h2' className="visually-hidden">
+                    General table of Starwars characters
+                </Typography>
                 <PaginationRounded
                     page={ page }
                     handleChange={ (_, v) => dispatch(setPage(v)) }
                     totalPages={ totalPages }
                 />
-            </section>
+            </Box>
         </Container>
     );
 };

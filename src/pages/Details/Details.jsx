@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useGetPersonByIdQuery } from '@/services/peopleApi';
 import { clearCurrentPerson } from '@/store/slices/peopleSlice';
+import { Container } from '@mui/material';
 import InformationSheet from '@/components/InformationSheet/InformationSheet';
 import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner';
 import NotFound from '@/pages/NotFound/NotFound';
@@ -27,13 +28,17 @@ const Details = () => {
   if (error) return <NotFound />;
 
   return (
-    <main className="Main-Details container mt-5 position-relative text-white py-2">
-      <section>
-        <h2 className="visually-hidden"> Information sheet of { person.name }</h2>
-
-        <InformationSheet person={ person } />
-      </section>
-    </main>
+    <Container
+      component='main'
+      className='Main-Details'
+      sx={{
+        position: 'relative',
+        marginTop: '3rem',
+        paddingBottom: '2rem',
+      }}
+    >
+      <InformationSheet person={person} />
+    </Container>
   );
 };
 
