@@ -1,9 +1,11 @@
-import PropTypes from 'prop-types';
-import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner';
-import CustomSeparator from '../Breadcrumbs/CustomSeparator';
 import { useSelector } from 'react-redux';
-import { useGetAllPeopleQuery } from '../../services/peopleApi';
+import PropTypes from 'prop-types';
+import { useGetAllPeopleQuery } from '@/services/peopleApi';
 import { Container, Typography } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner';
+import CustomSeparator from '@/components/Breadcrumbs/CustomSeparator';
+
 
 /**
  * Header Component with title, and breadcrumb trail
@@ -12,6 +14,7 @@ import { Container, Typography } from '@mui/material';
  */
 
 const Header = ({ title, colorTitle }) => {
+    const isMobile = useMediaQuery('(max-width:600px)');
     const { isLoading } = useGetAllPeopleQuery();
     const currentPerson = useSelector(
         (state) => state.people.currentPerson || {}
@@ -19,11 +22,11 @@ const Header = ({ title, colorTitle }) => {
 
     if (isLoading) return <LoaderSpinner />;
     return (
-        <Container component='header' sx={{ paddingTop: '3rem' }}>
+        <Container component='header' sx={ { paddingTop: '3rem' } }>
             <Typography
                 variant='h1'
-                sx={{ textAlign: 'start', marginBottom: '1.5rem', fontSize: '4.5rem', fontWeight: 700 }}
-                style={{ color: colorTitle }}
+                sx={ { textAlign: 'center', marginBottom: '1.5rem', fontSize: isMobile ? '2.5rem' : '4.5rem', fontWeight: 700 } }
+                style={ { color: colorTitle } }
             >
                 { title }
             </Typography>

@@ -11,6 +11,7 @@ import {
     TableCell,
     Button,
 } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 /**
  * Table Component who contain the data for some information and show 10 people per 10
@@ -22,6 +23,7 @@ const CustomTableCell = ({
     align = 'center',
     size = 'medium',
     textTransform = 'none',
+    isHidden = false,
 }) => {
     return (
         <TableCell
@@ -32,15 +34,17 @@ const CustomTableCell = ({
                 borderWidth: 1,
                 borderStyle: 'solid',
                 borderColor: '#4d5154',
-                textTransform: { textTransform },
+                textTransform: textTransform,
+                display: isHidden ? 'none' : 'table-cell',
             } }
         >
             { children }
         </TableCell>
     );
-};
+}
 
 const TableComponent = ({ people }) => {
+    const isMobile = useMediaQuery('(max-width:600px)');
     return (
         <TableContainer
             component={ Paper }
@@ -79,6 +83,7 @@ const TableComponent = ({ people }) => {
                                     borderStyle: 'solid',
                                     borderColor: '#4d5154',
                                     textTransform: 'capitalize',
+                                    display: isMobile && (label === 'height' || label === 'gender') ? 'none' : 'table-cell',
                                 } }
                             >
                                 { label }
@@ -105,8 +110,8 @@ const TableComponent = ({ people }) => {
                             } }
                         >
                             <CustomTableCell align='left'>{ character.name }</CustomTableCell>
-                            <CustomTableCell>{ character.height } cm</CustomTableCell>
-                            <CustomTableCell textTransform='capitalize'>{ character.gender }</CustomTableCell>
+                            <CustomTableCell isHidden={ isMobile }>{ character.height } cm</CustomTableCell>
+                            <CustomTableCell textTransform='capitalize' isHidden={ isMobile }>{ character.gender }</CustomTableCell>
                             <CustomTableCell size='small'>
                                 <NavLink
                                     to={ `people/${character.id}` }
