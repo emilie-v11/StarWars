@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useGetPersonByIdQuery } from '@/services/peopleApi';
 import { clearCurrentPerson } from '@/store/slices/peopleSlice';
-import { Container } from '@mui/material';
+import Container from '@mui/material/Container';
 import InformationSheet from '@/components/InformationSheet/InformationSheet';
 import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner';
 import NotFound from '@/pages/NotFound/NotFound';
@@ -33,7 +33,7 @@ const Details = () => {
       className='Main-Details'
       sx={{
         position: 'relative',
-        marginTop: '3rem',
+        marginTop: '2rem',
         paddingBottom: '2rem',
       }}
     >

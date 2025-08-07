@@ -1,4 +1,5 @@
-import { ListItem, ListItemText, Typography } from '@mui/material';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 import PropTypes from 'prop-types';
 
 /**

@@ -3,8 +3,11 @@ import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner';
 import PaginationRounded from '@/components/Pagination/Pagination';
 import TableComponent from '@/components/Table/TableComponent';
 import { setPage } from '@/store/slices/peopleSlice';
-import { useGetAllPeopleQuery } from '../../services/peopleApi';
-import { Container, Typography, Box } from '@mui/material';
+import { useGetAllPeopleQuery } from '@/services/peopleApi';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+
 
 /**
  * Index Page - Homepage - Contain the Table and Pagination
@@ -24,9 +27,9 @@ const Index = () => {
     if (error) return <div>Error: { error.message }</div>;
 
     return (
-        <Container component="main" sx={ { marginTop: '3rem', paddingBottom: '2rem' } }>
+        <Container component="main" sx={ { marginTop: '2rem', paddingBottom: '2rem' } }>
             <TableComponent people={ pagedPeople } />
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <Box sx={ { display: 'flex', justifyContent: 'flex-end' } }>
                 <Typography variant='h2' className="visually-hidden">
                     General table of Starwars characters
                 </Typography>

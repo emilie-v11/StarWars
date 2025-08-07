@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useGetAllPeopleQuery } from '@/services/peopleApi';
-import { Container, Typography } from '@mui/material';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner';
 import CustomSeparator from '@/components/Breadcrumbs/CustomSeparator';
@@ -25,7 +26,7 @@ const Header = ({ title, colorTitle }) => {
         <Container component='header' sx={ { paddingTop: '3rem' } }>
             <Typography
                 variant='h1'
-                sx={ { textAlign: 'center', marginBottom: '1.5rem', fontSize: isMobile ? '2.5rem' : '4.5rem', fontWeight: 700 } }
+                sx={ { textAlign: 'center', marginBottom: '1.5rem', fontSize: isMobile ? '2.5rem' : '3.5rem', fontWeight: 700 } }
                 style={ { color: colorTitle } }
             >
                 { title }
