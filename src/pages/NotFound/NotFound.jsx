@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import { Container } from '@mui/material';
 import './NotFound.css';
 
 /**
@@ -6,7 +7,7 @@ import './NotFound.css';
  */
 const NotFound = () => {
     return (
-        <main className="Main-Error404">
+        <Container className="Main-Error404">
             <div className="Image-404">
                 <div className="Content-404">
                     <p className="Number-404">404</p>
@@ -16,7 +17,7 @@ const NotFound = () => {
                     </NavLink>
                 </div>
             </div>
-        </main>
+        </Container>
     );
 };
 

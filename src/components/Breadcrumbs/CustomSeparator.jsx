@@ -12,7 +12,7 @@ import Box from '@mui/material/Box';
 
 export default function CustomSeparator({ currentPerson }) {
     // Add '...' for the homepage, when currentPerson is empty
-    const isEmpty = Object.keys(currentPerson).length === 0;
+    const isEmpty = currentPerson && Object.keys(currentPerson).length === 0;
 
     return (
         <Box sx={ { position: 'relative' } }>

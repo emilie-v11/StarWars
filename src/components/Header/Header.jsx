@@ -1,8 +1,7 @@
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useGetAllPeopleQuery } from '@/services/peopleApi';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
+import { Container, Typography } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner';
 import CustomSeparator from '@/components/Breadcrumbs/CustomSeparator';

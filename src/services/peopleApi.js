@@ -23,16 +23,19 @@ export const peopleApi = createApi({
       async queryFn(id, _api, _extraOptions, baseQuery) {
         try {
           const response = await baseQuery({ url: `people/${id}` });
-          if (response.error) return { error: response.error };
-          const person = response.data;
-  
+          // if (response.error) return { error: response.error };
+          const person = await response.data;
+          if (!person) {
+              throw new Response("Not Found", { status: 404 });
+          }
+
           // extract ID and person
           const idMatch = person.url.match(/people\/(\d+)/);
           const result = {
             id: idMatch ? Number(idMatch[1]) : null,
             ...person,
           };
-  
+
           // Homeworld
           if (person.homeworld) {
             const homeworldData = await baseQuery({
@@ -44,7 +47,7 @@ export const peopleApi = createApi({
           } else {
             result.homeworld = 'Unknown';
           }
-  
+
           // Films
           if (Array.isArray(person.films) && person.films.length) {
             const filmsTitles = await Promise.all(
@@ -57,7 +60,7 @@ export const peopleApi = createApi({
           } else {
             result.films = 'Unknown';
           }
-  
+
           // Vehicles
           if (Array.isArray(person.vehicles) && person.vehicles.length) {
             const names = await Promise.all(
@@ -73,9 +76,11 @@ export const peopleApi = createApi({
             result.vehicles = 'Unknown';
           }
           return { data: result };
-          
         } catch (error) {
-          throw new Error(`Failed to fetch person with ID ${id}: ${error.message}`);
+          console.error(`Failed to fetch person with ID ${id}:`, error);
+          throw new Error(
+            `Failed to fetch person with ID ${id}: ${error.message}`
+          );
         }
       },
     }),

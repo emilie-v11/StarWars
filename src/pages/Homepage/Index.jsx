@@ -4,7 +4,6 @@ import PaginationRounded from '@/components/Pagination/Pagination';
 import TableComponent from '@/components/Table/TableComponent';
 import { setPage } from '@/store/slices/peopleSlice';
 import { useGetAllPeopleQuery } from '@/services/peopleApi';
-import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
@@ -27,7 +26,7 @@ const Index = () => {
     if (error) return <div>Error: { error.message }</div>;
 
     return (
-        <Container component="main" sx={ { marginTop: '2rem', paddingBottom: '2rem' } }>
+        <Box>
             <TableComponent people={ pagedPeople } />
             <Box sx={ { display: 'flex', justifyContent: 'flex-end' } }>
                 <Typography variant='h2' className="visually-hidden">
@@ -39,7 +38,7 @@ const Index = () => {
                     totalPages={ totalPages }
                 />
             </Box>
-        </Container>
+        </Box>
     );
 };
 

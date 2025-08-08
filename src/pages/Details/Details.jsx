@@ -3,10 +3,9 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useGetPersonByIdQuery } from '@/services/peopleApi';
 import { clearCurrentPerson } from '@/store/slices/peopleSlice';
-import Container from '@mui/material/Container';
 import InformationSheet from '@/components/InformationSheet/InformationSheet';
 import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner';
-import NotFound from '@/pages/NotFound/NotFound';
+import { Box } from '@mui/material';
 
 /**
  * Details Page - For more informations of the active personn (by ID) - Access to this page with button "view" in the Table
@@ -14,7 +13,7 @@ import NotFound from '@/pages/NotFound/NotFound';
 const Details = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { data: person, isLoading, error } = useGetPersonByIdQuery(Number(id), {
+  const { data: person, isLoading } = useGetPersonByIdQuery(Number(id), {
     skip: !id,
   });
 
@@ -25,20 +24,11 @@ const Details = () => {
   }, [dispatch]);
 
   if (isLoading) return <LoaderSpinner />;
-  if (error) return <NotFound />;
 
   return (
-    <Container
-      component='main'
-      className='Main-Details'
-      sx={{
-        position: 'relative',
-        marginTop: '2rem',
-        paddingBottom: '2rem',
-      }}
-    >
-      <InformationSheet person={person} />
-    </Container>
+    <Box>
+      <InformationSheet person={ person } />
+    </Box>
   );
 };
 

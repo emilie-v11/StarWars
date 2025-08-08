@@ -43,7 +43,7 @@ const InformationSheet = ({ person }) => {
 };
 
 InformationSheet.propTypes = {
-    person: PropTypes.object.isRequired,
+    person: PropTypes.object,
 };
 
 export default InformationSheet;
