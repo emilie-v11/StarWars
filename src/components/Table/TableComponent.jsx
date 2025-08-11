@@ -1,14 +1,9 @@
 import { memo } from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Paper from '@mui/material/Paper';
-import TableContainer from '@mui/material/TableContainer';
-import Table from '@mui/material/Table';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import Button from '@mui/material/Button';
+import { Paper, TableContainer, Table, TableHead, TableRow, TableBody } from '@mui/material';
+import CustomTableCell from '@/components/Table/CustomTableCell';
+import ActionButton from '@/components/Table/ActionButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 /**
@@ -16,33 +11,9 @@ import useMediaQuery from '@mui/material/useMediaQuery';
  * @property {array} people - Name of the current person in details page
  */
 
-const CustomTableCell = ({
-    children,
-    align = 'center',
-    size = 'medium',
-    textTransform = 'none',
-    isHidden = false,
-}) => {
-    return (
-        <TableCell
-            align={ align }
-            size={ size }
-            sx={ {
-                color: '#fff',
-                borderWidth: 1,
-                borderStyle: 'solid',
-                borderColor: '#4d5154',
-                textTransform: textTransform,
-                display: isHidden ? 'none' : 'table-cell',
-            } }
-        >
-            { children }
-        </TableCell>
-    );
-}
-
-const TableComponent = ({ people }) => {
+const TableComponent = ({ people, columns }) => {
     const isMobile = useMediaQuery('(max-width:600px)');
+
     return (
         <TableContainer
             component={ Paper }
@@ -61,39 +32,27 @@ const TableComponent = ({ people }) => {
                     '& .MuiTableCell-root': {
                         maxHeight: '57px',
                         fontSize: '16px',
-                        fontFamily: 'Orbitron, "Helvetica Neue", sans-serif',
                     },
                 } }
             >
                 <TableHead>
                     <TableRow
                         sx={ {
-                            backgroundColor: '#212529'
+                            backgroundColor: '#212529',
                         } }
                     >
-                        { ['name', 'height', 'gender', 'actions'].map((label) => (
-                            <TableCell
-                                align={ label === 'name' ? 'left' : 'center' }
-                                key={ label }
-                                sx={ {
-                                    color: '#fff',
-                                    borderWidth: 1,
-                                    borderStyle: 'solid',
-                                    borderColor: '#4d5154',
-                                    textTransform: 'capitalize',
-                                    display: isMobile && (label === 'height' || label === 'gender') ? 'none' : 'table-cell',
-                                } }
-                            >
+                        { columns.map((label) => (
+                            <CustomTableCell key={ label } align={ label === 'actions' ? 'center' : 'left' } textTransform='capitalize' hide={ isMobile && (label === 'height' || label === 'gender') || label === 'id' }>
                                 { label }
-                            </TableCell>
+                            </CustomTableCell>
                         )) }
                     </TableRow>
                 </TableHead>
 
                 <TableBody>
-                    { people.map((character) => (
+                    { people.map((person) => (
                         <TableRow
-                            key={ character.id }
+                            key={ person.name }
                             hover
                             sx={ {
                                 '&:nth-of-type(odd)': {
@@ -107,30 +66,25 @@ const TableComponent = ({ people }) => {
                                 },
                             } }
                         >
-                            <CustomTableCell align='left'>{ character.name }</CustomTableCell>
-                            <CustomTableCell isHidden={ isMobile }>{ character.height } cm</CustomTableCell>
-                            <CustomTableCell textTransform='capitalize' isHidden={ isMobile }>{ character.gender }</CustomTableCell>
-                            <CustomTableCell size='small'>
-                                <NavLink
-                                    to={ `people/${character.id}` }
-                                    style={ { textDecoration: 'none' } }
+                            { Object.entries(person).map(([key, value]) => (
+                                <CustomTableCell
+                                    key={ key }
+                                    hide={
+                                        (isMobile && (key === 'height' || key === 'gender')) ||
+                                        key === 'id'
+                                    }
+                                    textTransform={ key === 'gender' ? 'capitalize' : 'none' }
                                 >
-                                    <Button
-                                        variant='contained'
-                                        size='small'
-                                        sx={ {
-                                            textAlign: 'center',
-                                            borderWidth: 1,
-                                            borderStyle: 'solid',
-                                            borderColor: '#4d5154',
-                                            backgroundColor: '#ffc107',
-                                            color: '#000',
-                                            '&:hover': { backgroundColor: '#e0a800' },
-                                        } }
-                                    >
-                                        View
-                                    </Button>
-                                </NavLink>
+                                    { value }
+                                </CustomTableCell>
+                            )) }
+                            <CustomTableCell size='small' align='center'>
+                                <ActionButton
+                                    url={ `people/${person.id}` }
+                                    label='View'
+                                    color={ '#000' }
+                                    bgColor={ '#ffc107' }
+                                />
                             </CustomTableCell>
                         </TableRow>
                     )) }

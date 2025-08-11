@@ -11,39 +11,31 @@ import InformationItem from './InformationItem';
 
 const InformationSheet = ({ person }) => {
     return (
-        <Box component='section'>
-            <h2 className='visually-hidden'>Information sheet of { person.name }</h2>
-            <Box
-                sx={ {
-                    backgroundColor: 'rgba(33, 37, 41, 0.75)',
-                    borderRadius: '5px',
-                    zIndex: -1,
-                    width: '100%',
-                    height: '100%',
-                    padding: '1.5rem',
-                } }
-            >
-
-                <List sx={ { position: 'relative', zIndex: 3, opacity: 1 } }>
-                    <InformationItem categorie='Name' info={ person.name } />
-                    <InformationItem categorie='Gender' info={ person.gender } />
-                    <InformationItem categorie='Height' info={ person.height } />
-                    <InformationItem categorie='Mass' info={ person.mass } />
-                    <InformationItem categorie='Hair Color' info={ person.hair_color } />
-                    <InformationItem categorie='Skin Color' info={ person.skin_color } />
-                    <InformationItem categorie='Eye Color' info={ person.eye_color } />
-                    <InformationItem categorie='Birth Year' info={ person.birth_year } />
-                    <InformationItem categorie='Homeworld' info={ person.homeworld } />
-                    <InformationItem categorie='Films' info={ person.films } />
-                    <InformationItem categorie='Vehicles' info={ person.vehicles } />
-                </List>
-            </Box>
+        <Box
+            sx={ {
+                backgroundColor: 'rgba(33, 37, 41, 0.75)',
+                borderRadius: '5px',
+                zIndex: -1,
+                width: '100%',
+                height: '100%',
+                padding: '1.5rem',
+            } }
+        >
+            <List sx={ { position: 'relative', zIndex: 3, opacity: 1 } }>
+                { person.map((item) => (
+                    <InformationItem
+                        key={ item.label }
+                        label={ item.label }
+                        value={ item.value }
+                    />
+                )) }
+            </List>
         </Box>
     );
 };
 
 InformationSheet.propTypes = {
-    person: PropTypes.object,
+    person: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
 
 export default InformationSheet;

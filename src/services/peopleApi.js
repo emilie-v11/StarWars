@@ -13,7 +13,17 @@ export const peopleApi = createApi({
           const idMatch = person.url.match(/people\/(\d+)/);
           return {
             id: idMatch ? Number(idMatch[1]) : null,
-            ...person,
+            name: person.name,
+            gender: person.gender,
+            height: person.height,
+            mass: person.mass,
+            hair_color: person.hair_color,
+            skin_color: person.skin_color,
+            eye_color: person.eye_color,
+            birth_year: person.birth_year,
+            homeworld: person.homeworld,
+            films: person.films,
+            vehicles: person.vehicles,
           };
         });
         return characters;
@@ -33,7 +43,17 @@ export const peopleApi = createApi({
           const idMatch = person.url.match(/people\/(\d+)/);
           const result = {
             id: idMatch ? Number(idMatch[1]) : null,
-            ...person,
+            name: person.name,
+            gender: person.gender,
+            height: person.height,
+            mass: person.mass,
+            hair_color: person.hair_color,
+            skin_color: person.skin_color,
+            eye_color: person.eye_color,
+            birth_year: person.birth_year,
+            homeworld: person.homeworld,
+            films: person.films,
+            vehicles: person.vehicles,
           };
 
           // Homeworld

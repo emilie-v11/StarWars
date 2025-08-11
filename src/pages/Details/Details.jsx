@@ -3,9 +3,10 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useGetPersonByIdQuery } from '@/services/peopleApi';
 import { clearCurrentPerson } from '@/store/slices/peopleSlice';
+import { objectToFields } from '@/utils/helpers';
+import { Box } from '@mui/material';
 import InformationSheet from '@/components/InformationSheet/InformationSheet';
 import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner';
-import { Box } from '@mui/material';
 
 /**
  * Details Page - For more informations of the active personn (by ID) - Access to this page with button "view" in the Table
@@ -17,6 +18,9 @@ const Details = () => {
     skip: !id,
   });
 
+  const fieldsWithoutId = person && objectToFields(person, { exclude: ['id'] });
+  const currentPersonName = person?.name;
+
   useEffect(() => {
     return () => {
       dispatch(clearCurrentPerson());
@@ -26,8 +30,11 @@ const Details = () => {
   if (isLoading) return <LoaderSpinner />;
 
   return (
-    <Box>
-      <InformationSheet person={ person } />
+    <Box component='section'>
+      <h2 className='visually-hidden'>
+        Information sheet of { currentPersonName }
+      </h2>
+      <InformationSheet person={ fieldsWithoutId } />
     </Box>
   );
 };
