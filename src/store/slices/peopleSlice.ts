@@ -1,7 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { peopleApi } from '@/services/peopleApi';
+import type { Person } from '../../types/person';
 
-const initialState = {
+interface PeopleState {
+  page: number;
+  currentPerson: Person | null;
+}
+
+const initialState: PeopleState = {
   page: 1,
   currentPerson: null,
 };
@@ -10,7 +16,7 @@ const peopleSlice = createSlice({
   name: 'people',
   initialState,
   reducers: {
-    setPage(state, action) {
+    setPage(state, action: PayloadAction<number>) {
       state.page = action.payload;
     },
     clearCurrentPerson(state) {
