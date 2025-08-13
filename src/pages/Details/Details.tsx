@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { useGetPersonByIdQuery } from '@/services/peopleApi';
 import { clearCurrentPerson } from '@/store/slices/peopleSlice';
-import { objectToFields } from '@/utils/helpers';
+import { Field, objectToFields } from '@/utils/helpers';
 import { Box } from '@mui/material';
 import InformationSheet from '@/components/InformationSheet/InformationSheet';
 import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner';
@@ -11,14 +11,19 @@ import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner';
 /**
  * Details Page - For more informations of the active personn (by ID) - Access to this page with button "view" in the Table
  */
+
 const Details = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { data: person, isLoading } = useGetPersonByIdQuery(Number(id), {
+  const { data: person, isLoading, error } = useGetPersonByIdQuery(Number(id), {
     skip: !id,
   });
 
-  const fieldsWithoutId = person && objectToFields(person, { exclude: ['id'] });
+  const fieldsWithoutId: Field[] = useMemo(
+    () => (person ? objectToFields(person, { exclude: ['id'] }) : []),
+    [person]
+  );
+
   const currentPersonName = person?.name;
 
   useEffect(() => {
@@ -28,6 +33,10 @@ const Details = () => {
   }, [dispatch]);
 
   if (isLoading) return <LoaderSpinner />;
+
+  if (error) {
+    return <Navigate to='/404' replace />;
+  }
 
   return (
     <Box component='section'>

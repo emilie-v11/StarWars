@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import './Pagination.css';
@@ -10,7 +9,13 @@ import './Pagination.css';
  * @property {number} totalPages - Total of the pages (10 people per page)
  */
 
-export default function PaginationControlled({ page, handleChange, totalPages }) {
+interface PaginationControlledProps {
+    page: number;
+    handleChange: (event: React.ChangeEvent<unknown>, value: number) => void;
+    totalPages: number;
+}
+
+const PaginationControlled = ({ page, handleChange, totalPages }: PaginationControlledProps) => {
     return (
         <Stack spacing={2}>
             <Pagination
@@ -29,8 +34,4 @@ export default function PaginationControlled({ page, handleChange, totalPages })
     );
 }
 
-PaginationControlled.propTypes = {
-    page: PropTypes.number.isRequired,
-    handleChange: PropTypes.func.isRequired,
-    totalPages: PropTypes.number.isRequired,
-};
+export default PaginationControlled;

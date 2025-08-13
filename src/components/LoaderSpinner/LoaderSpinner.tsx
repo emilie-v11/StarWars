@@ -1,14 +1,15 @@
+import { JSX } from 'react';
 import './LoaderSpinner.css';
 
 /**
  * It's show when data aren't ready to display
- * @returns {ReactElement} Loader component when data aren't ready to display
+ * @returns {JSX.Element} Loader component when data aren't ready to display
  */
-const LoaderSpinner = () => {
+const LoaderSpinner = (): JSX.Element => {
     return (
         <div className="Loader-Overlay">
             <p>Loading ...</p>
-            <svg className="spinner" viewBox="0 0 66 66" datareactid=".0.3.0.0.0.0.0">
+            <svg className="spinner" viewBox="0 0 66 66">
                 <circle
                     className="path"
                     fill="none"
@@ -17,7 +18,6 @@ const LoaderSpinner = () => {
                     cx="33"
                     cy="33"
                     r="30"
-                    datareactid=".0.3.0.0.0.0.0.0"
                 ></circle>
             </svg>
         </div>

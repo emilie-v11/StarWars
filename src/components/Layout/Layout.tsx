@@ -4,9 +4,7 @@ import Header from '@/components/Header/Header';
 
 /**
  * The layout containing the header and main content area
- *
- * @return {JSX Element}
- */
+ * */
 const Layout = () => {
     return (
         <Container sx={{ minHeight: '100%', height: '100vh', display: 'flex', flexDirection: 'column' }}>

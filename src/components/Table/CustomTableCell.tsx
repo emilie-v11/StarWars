@@ -1,5 +1,12 @@
-import PropTypes from "prop-types";
 import { TableCell } from "@mui/material";
+
+interface CustomTableCellProps {
+    children: React.ReactNode;
+    align?: 'left' | 'center' | 'right';
+    size?: 'small' | 'medium';
+    textTransform?: 'none' | 'capitalize' | 'uppercase' | 'lowercase';
+    hide?: boolean;
+}
 
 const CustomTableCell = ({
     children,
@@ -7,7 +14,7 @@ const CustomTableCell = ({
     size = 'medium',
     textTransform = 'none',
     hide = false,
-}) => {
+}: CustomTableCellProps) => {
     return (
         <TableCell
             align={ align }
@@ -25,12 +32,4 @@ const CustomTableCell = ({
         </TableCell>
     );
 }
-CustomTableCell.propTypes = {
-    children: PropTypes.node.isRequired,
-    align: PropTypes.oneOf(['left', 'center', 'right']),
-    size: PropTypes.oneOf(['small', 'medium', 'large']),
-    textTransform: PropTypes.oneOf(['none', 'capitalize', 'uppercase', 'lowercase']),
-    hide: PropTypes.bool,
-};
-
 export default CustomTableCell;

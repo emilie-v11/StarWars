@@ -11,7 +11,7 @@ export type PersonApi = {
   homeworld?: string | null;
   films?: string[] | null;
   vehicles?: string[] | null;
-}
+};
 
 export type Person = {
   id: number | null;
@@ -27,4 +27,4 @@ export type Person = {
   homeworld: string | null;
   films: string[] | null;
   vehicles: string[] | null;
-}
+};

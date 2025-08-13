@@ -1,5 +1,5 @@
 /**
- * Extract id from an url
+ * Extract ID from an url
  * @param {string} url
  * @return {*}  {(number | null)}
  */

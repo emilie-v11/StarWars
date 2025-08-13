@@ -1,6 +1,4 @@
 import { memo } from 'react';
-import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { Paper, TableContainer, Table, TableHead, TableRow, TableBody } from '@mui/material';
 import CustomTableCell from '@/components/Table/CustomTableCell';
 import ActionButton from '@/components/Table/ActionButton';
@@ -11,7 +9,12 @@ import useMediaQuery from '@mui/material/useMediaQuery';
  * @property {array} people - Name of the current person in details page
  */
 
-const TableComponent = ({ people, columns }) => {
+interface TableComponentProps {
+    people: Array<{ [key: string]: any }>;
+    columns: string[];
+}
+
+const TableComponent = ({ people, columns }: TableComponentProps) => {
     const isMobile = useMediaQuery('(max-width:600px)');
 
     return (
@@ -92,10 +95,6 @@ const TableComponent = ({ people, columns }) => {
             </Table>
         </TableContainer>
     );
-};
-
-TableComponent.propTypes = {
-    people: PropTypes.array,
 };
 
 export default memo(TableComponent);

@@ -6,7 +6,6 @@ const HomePage = lazy(() => import('@/pages/Homepage/Index'));
 const Details = lazy(() => import('@/pages/Details/Details'));
 const NotFound = lazy(() => import('@/pages/NotFound/NotFound'));
 
-
 const router = createBrowserRouter([
     {
         path: '/',

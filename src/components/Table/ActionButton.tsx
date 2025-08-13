@@ -2,7 +2,15 @@ import { NavLink } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { darken } from '@mui/material';
 
-const ActionButton = ({ url, label, color, bgColor, borderColor = '#4d5154' }) => {
+interface ActionButtonProps {
+  url: string;
+  label: string;
+  color: string;
+  bgColor: string;
+  borderColor?: string;
+}
+
+const ActionButton = ({ url, label, color, bgColor, borderColor = '#4d5154' }: ActionButtonProps) => {
   return (
     <NavLink
       to={ url }

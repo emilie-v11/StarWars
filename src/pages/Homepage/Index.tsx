@@ -1,12 +1,15 @@
-import { useDispatch, useSelector } from 'react-redux';
-import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner';
-import PaginationRounded from '@/components/Pagination/Pagination';
-import TableComponent from '@/components/Table/TableComponent';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from '@/store/hooks';
 import { setPage } from '@/store/slices/peopleSlice';
 import { useGetAllPeopleQuery } from '@/services/peopleApi';
-import { objectToFields, filterList } from '@/utils/helpers';
+import { filterList } from '@/utils/helpers';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import TableComponent from '@/components/Table/TableComponent';
+import PaginationRounded from '@/components/Pagination/Pagination';
+import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner';
+import { Navigate } from 'react-router-dom';
+import { useMemo } from 'react';
 
 /**
  * Index Page - Homepage - Contain the Table and Pagination
@@ -15,17 +18,18 @@ import Box from '@mui/material/Box';
 const Index = () => {
   const dispatch = useDispatch();
   const { data: people = [], isLoading, error } = useGetAllPeopleQuery();
-  const page = useSelector((state) => state.people.page);
+  const page = useAppSelector((state) => state.people.page);
 
-  const fieldsForTable =
-    people?.map((person) =>
+  const fieldsForTable = useMemo(() => {
+    return people?.map((person) =>
       filterList(person, {
         only: ['id', 'name', 'height', 'gender'],
         valueMap: { height: (value) => `${value} cm` },
       })
     );
+  }, [people]);
 
-    const columns = Object.keys(fieldsForTable[0] || {}).concat('actions');
+  const columns = Object.keys(fieldsForTable[0] || {}).concat('actions');
 
   // Pagination logic
   const pageSize = 10; // Number of people per page
@@ -34,7 +38,9 @@ const Index = () => {
   const pagedPeople = fieldsForTable.slice(start, start + pageSize);
 
   if (isLoading) return <LoaderSpinner />;
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) {
+    return <Navigate to='/404' replace />;
+  }
 
   return (
     <Box>
