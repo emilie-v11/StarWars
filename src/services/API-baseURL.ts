@@ -3,4 +3,4 @@
  * @property {string} baseURL - URL to the API
  */
 
-export const apiBaseURL = 'https://swapi.info/api/';
+export const apiBaseURL: string = 'https://swapi.info/api/';

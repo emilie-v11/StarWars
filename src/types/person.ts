@@ -1,4 +1,4 @@
-export interface PersonApi {
+export type PersonApi = {
   url: string;
   name: string;
   gender: string;
@@ -8,14 +8,14 @@ export interface PersonApi {
   skin_color: string;
   eye_color: string;
   birth_year: string;
-  homeworld?: string;
-  films?: string[];
-  vehicles?: string[];
+  homeworld?: string | null;
+  films?: string[] | null;
+  vehicles?: string[] | null;
 }
 
-export interface Person {
+export type Person = {
   id: number | null;
-  url: string;
+  url?: string;
   name: string;
   gender: string;
   height: string;
@@ -24,7 +24,7 @@ export interface Person {
   skinColor: string;
   eyeColor: string;
   birthYear: string;
-  homeworld: string;
-  films: string;
-  vehicles: string;
+  homeworld: string | null;
+  films: string[] | null;
+  vehicles: string[] | null;
 }
