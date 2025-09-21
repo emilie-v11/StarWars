@@ -14,7 +14,7 @@
     "noEmit": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "types": ["vite/client", "node"],
+    "types": ["vite/client", "node", "src/types"],
     "skipLibCheck": true,
     "outDir": "dist",
     "baseUrl": ".",
