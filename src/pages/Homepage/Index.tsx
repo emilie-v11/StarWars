@@ -24,24 +24,38 @@ const Index = () => {
     return people?.map((person) =>
       filterList(person, {
         only: ['id', 'name', 'height', 'gender'],
-        valueMap: { height: (value) => `${value} cm` },
+        valueMap: {
+          height: (value) => (
+            value && !isNaN(Number(value)) ? `${value} cm` : value)
+        },
       })
     );
   }, [people]);
 
-  const columns = Object.keys(fieldsForTable[0] || {}).concat('actions');
 
   // Pagination logic
   const pageSize = 10; // Number of people per page
-  const totalPages = Math.ceil(fieldsForTable.length / pageSize);
-  const start = (page - 1) * pageSize;
+  const totalItems = fieldsForTable.length;
+  const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));
+
+  const safePage = Math.min(Math.max(page, 1), totalPages);
+  const start = (safePage - 1) * pageSize;
   const pagedPeople = fieldsForTable.slice(start, start + pageSize);
+
+  // const columns = Object.keys(fieldsForTable[0] || {}).concat('actions');
+  const baseColumns = fieldsForTable[0] ? Object.keys(fieldsForTable[0]) : ['id', 'name', 'height', 'gender'];
+  const columns = [...baseColumns, 'actions'];
 
   const handleChange = (_event: ChangeEvent<unknown>, value: number) => {
     dispatch(setPage(value));
   };
 
   if (isLoading) return <LoaderSpinner />;
+
+  if (!isLoading && totalItems === 0) {
+    return <Typography>No characters found.</Typography>;
+  }
+
   if (error) {
     return <Navigate to='/404' replace />;
   }
