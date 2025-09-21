@@ -1,3 +1,4 @@
+import { ChangeEvent } from 'react';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import './Pagination.css';
@@ -11,7 +12,7 @@ import './Pagination.css';
 
 interface PaginationControlledProps {
     page: number;
-    handleChange: (event: React.ChangeEvent<unknown>, value: number) => void;
+    handleChange: (_event: ChangeEvent<unknown>, _value: number) => void;
     totalPages: number;
 }
 

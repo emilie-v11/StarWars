@@ -1,7 +1,8 @@
+import { ReactNode } from "react";
 import { TableCell } from "@mui/material";
 
 interface CustomTableCellProps {
-    children: React.ReactNode;
+    children: ReactNode;
     align?: 'left' | 'center' | 'right';
     size?: 'small' | 'medium';
     textTransform?: 'none' | 'capitalize' | 'uppercase' | 'lowercase';

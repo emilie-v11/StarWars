@@ -9,7 +9,7 @@ import TableComponent from '@/components/Table/TableComponent';
 import PaginationRounded from '@/components/Pagination/Pagination';
 import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner';
 import { Navigate } from 'react-router-dom';
-import { useMemo } from 'react';
+import { ChangeEvent, useMemo } from 'react';
 
 /**
  * Index Page - Homepage - Contain the Table and Pagination
@@ -37,6 +37,10 @@ const Index = () => {
   const start = (page - 1) * pageSize;
   const pagedPeople = fieldsForTable.slice(start, start + pageSize);
 
+  const handleChange = (_event: ChangeEvent<unknown>, value: number) => {
+    dispatch(setPage(value));
+  };
+
   if (isLoading) return <LoaderSpinner />;
   if (error) {
     return <Navigate to='/404' replace />;
@@ -51,7 +55,7 @@ const Index = () => {
         </Typography>
         <PaginationRounded
           page={page}
-          handleChange={(_, v) => dispatch(setPage(v))}
+          handleChange={handleChange}
           totalPages={totalPages}
         />
       </Box>
