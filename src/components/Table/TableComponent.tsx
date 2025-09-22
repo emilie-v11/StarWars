@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { Paper, TableContainer, Table, TableHead, TableRow, TableBody } from '@mui/material';
 import CustomTableCell from '@/components/Table/CustomTableCell';
-import ActionButton from '@/components/Table/ActionButton';
+import ActionButton from '@/components/Buttons/ActionButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 /**
