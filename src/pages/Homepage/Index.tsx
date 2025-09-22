@@ -17,7 +17,7 @@ import { ChangeEvent, useMemo } from 'react';
 
 const Index = () => {
   const dispatch = useDispatch();
-  const { data: people = [], isLoading, error } = useGetAllPeopleQuery();
+  const { data: people = [], isLoading, isError } = useGetAllPeopleQuery();
   const page = useAppSelector((state) => state.people.page);
 
   const fieldsForTable = useMemo(() => {
@@ -56,7 +56,7 @@ const Index = () => {
     return <Typography>No characters found.</Typography>;
   }
 
-  if (error) {
+  if (isError) {
     return <Navigate to='/404' replace />;
   }
 

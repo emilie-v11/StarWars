@@ -34,10 +34,8 @@ export const peopleApi = createApi({
         try {
           const response = await baseQuery({ url: `people/${id}` });
           if (response.error) return { error: response.error };
+
           const apiResult = response.data as PersonApi | null;
-          if (!apiResult) {
-            throw new Response('Not Found', { status: 404 });
-          }
           if (!apiResult) return { error: { status: 404, data: 'Not Found' } };
 
           const base = toPerson(apiResult);
@@ -95,11 +93,7 @@ export const peopleApi = createApi({
         } catch (error) {
           // eslint-disable-next-line no-console
           console.error(`Failed to fetch person with ID ${id}:`, error);
-          const errorMessage =
-            error instanceof Error ? error.message : String(error);
-          throw new Error(
-            `Failed to fetch person with ID ${id}: ${errorMessage}`
-          ) as Error;
+          return { error: { status: 500, data: 'Unexpected error' } };
         }
       },
     }),

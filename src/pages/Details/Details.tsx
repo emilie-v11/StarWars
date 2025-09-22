@@ -1,15 +1,15 @@
 import { useEffect, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { useGetPersonByIdQuery } from '@/services/peopleApi';
 import { clearCurrentPerson } from '@/store/slices/peopleSlice';
 import { Field, objectToFields } from '@/utils/helpers';
 import { Box } from '@mui/material';
 import InformationSheet from '@/components/InformationSheet/InformationSheet';
 import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner';
-import NoCharacterFound from '@/components/InformationSheet/NoCharacterFound';
+// import NoCharacterFound from '@/components/InformationSheet/NoCharacterFound';
 import BackButton from '@/components/Buttons/BackButton';
-import InformationContainer from '@/components/Layout/InformationLayout';
+import InformationLayout from '@/components/Layout/InformationLayout';
 
 /**
  * Details Page - For more informations of the active personn (by ID) - Access to this page with button "view" in the Table
@@ -18,7 +18,7 @@ import InformationContainer from '@/components/Layout/InformationLayout';
 const Details = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { data: person, isLoading, error } = useGetPersonByIdQuery(Number(id), {
+  const { data: person, isLoading, isError } = useGetPersonByIdQuery(Number(id), {
     skip: !id,
   });
 
@@ -37,19 +37,19 @@ const Details = () => {
 
   if (isLoading) return <LoaderSpinner />;
 
+  if (isError || !person) {
+    return <Navigate to='/404' replace />;
+  }
+
   return (
     <Box component='section'>
       <h2 className='visually-hidden'>
         Information sheet of {currentPersonName}
       </h2>
       <BackButton text='Go back' />
-      <InformationContainer>
-        {error || !person ? (
-          <NoCharacterFound message='Character not found.' />
-        ) : (
-          <InformationSheet person={fieldsWithoutId} />
-        )}
-      </InformationContainer>
+      <InformationLayout>
+        <InformationSheet person={fieldsWithoutId} />
+      </InformationLayout>
     </Box>
   );
 };
