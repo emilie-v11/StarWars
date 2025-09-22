@@ -51,8 +51,8 @@ export const peopleApi = createApi({
               base.homeworld = 'Unknown';
             } else {
               base.homeworld =
-                ((homeworldData as { data: unknown }).data as { name?: string })?.name ??
-                'Unknown';
+                ((homeworldData as { data: unknown }).data as { name?: string })
+                  ?.name ?? 'Unknown';
             }
           } else {
             base.homeworld = 'Unknown';
@@ -62,8 +62,12 @@ export const peopleApi = createApi({
           if (Array.isArray(apiResult.films) && apiResult.films.length) {
             const filmsTitles = await Promise.all(
               apiResult.films.map(async (url) => {
-                const filmsData = await baseQuery({ url: url.replace(apiBaseURL, '') });
-                return filmsData?.error ? 'N/A' : (filmsData.data as { title: string }).title;
+                const filmsData = await baseQuery({
+                  url: url.replace(apiBaseURL, ''),
+                });
+                return filmsData?.error
+                  ? 'N/A'
+                  : (filmsData.data as { title: string }).title;
               })
             );
             base.films = filmsTitles;
@@ -78,7 +82,9 @@ export const peopleApi = createApi({
                 const vehicleData = await baseQuery({
                   url: url.replace(apiBaseURL, ''),
                 });
-                return vehicleData.error ? 'N/A' : (vehicleData.data as { name: string }).name;
+                return vehicleData.error
+                  ? 'N/A'
+                  : (vehicleData.data as { name: string }).name;
               })
             );
             base.vehicles = names;
@@ -87,8 +93,10 @@ export const peopleApi = createApi({
           }
           return { data: base };
         } catch (error) {
+          // eslint-disable-next-line no-console
           console.error(`Failed to fetch person with ID ${id}:`, error);
-          const errorMessage = error instanceof Error ? error.message : String(error);
+          const errorMessage =
+            error instanceof Error ? error.message : String(error);
           throw new Error(
             `Failed to fetch person with ID ${id}: ${errorMessage}`
           ) as Error;

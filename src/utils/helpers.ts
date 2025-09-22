@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /**
  * Extract ID from an url
  * @param {string} url
