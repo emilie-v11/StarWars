@@ -43,6 +43,10 @@ const BackButton = ({
                 '&:hover': { backgroundColor: darken(bgColor, 0.3) },
                 textTransform: 'none',
                 '& span.MuiButton-startIcon svg': { fill: color },
+                '&:focus-visible': {
+                    outline: '2px solid #ffc106',
+                    outlineOffset: '2px',
+                }
             }}
         >
             {text}
