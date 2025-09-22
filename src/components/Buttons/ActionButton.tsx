@@ -12,28 +12,30 @@ interface ActionButtonProps {
 
 const ActionButton = ({ url, label, color, bgColor, borderColor = '#4d5154' }: ActionButtonProps) => {
   return (
-    <NavLink
-      to={ url }
-      style={ { textDecoration: 'none' } }
+    <Button
+      component={NavLink}
+      to={url}
+      variant='contained'
+      size='small'
+      sx={{
+        textAlign: 'center',
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderColor: borderColor,
+        color: color,
+        backgroundColor: bgColor,
+        '&:hover': {
+          backgroundColor: darken(bgColor, 0.3),
+        },
+        '&.Mui-focusVisible': {
+          boxShadow: 'none',
+          outline: '2px solid #ffc106',
+          outlineOffset: '2px',
+        }
+      }}
     >
-      <Button
-        variant='contained'
-        size='small'
-        sx={ {
-          textAlign: 'center',
-          borderWidth: 1,
-          borderStyle: 'solid',
-          borderColor: borderColor,
-          color: color,
-          backgroundColor: bgColor,
-          '&:hover': {
-            backgroundColor: darken(bgColor, 0.3),
-          },
-        } }
-      >
-        { label }
-      </Button>
-    </NavLink>
+      {label}
+    </Button>
   );
 };
 
