@@ -2,15 +2,12 @@
     background-color: #212529;
 }
 
-.MuiPaginationItem-root,
-.MuiButtonBase-root-MuiPaginationItem-root,
-.MuiButtonBase-root-MuiPaginationItem-root {
+.MuiPaginationItem-root {
     color: #fff !important;
 }
 
-.MuiButtonBase-root-MuiPaginationItem-root.Mui-selected,
-.Mui-selected,
-.Mui-selected:hover {
+.MuiPaginationItem-root.Mui-selected,
+.MuiPaginationItem-root.Mui-selected:hover{
     background-color: #ffc106 !important;
     color: black !important;
     font-weight: 700 !important;
@@ -18,4 +15,9 @@
 
 .MuiPaginationItem-root:hover {
     background-color: #343a40;
+}
+
+.MuiPaginationItem-root:focus-visible {
+  outline: 2px solid #ffc106;
+  outline-offset: 2px;
 }
