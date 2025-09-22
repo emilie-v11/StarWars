@@ -1,7 +1,9 @@
 import { ReactNode } from "react";
 import { Box } from "@mui/material";
-// import BackButton from "../Buttons/BackButton";
 
+/**
+ * The layout of the Information Sheet with container area
+ * */
 const InformationLayout = ({ children }: { children: ReactNode }) => {
   return (
     <Box
