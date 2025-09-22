@@ -1,6 +1,6 @@
 import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import Layout from "@/components/Layout/Layout";
+import MainLayout from "@/components/Layout/MainLayout";
 
 const HomePage = lazy(() => import('@/pages/Homepage/Index'));
 const Details = lazy(() => import('@/pages/Details/Details'));
@@ -9,7 +9,7 @@ const NotFound = lazy(() => import('@/pages/NotFound/NotFound'));
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Layout />,
+        element: <MainLayout />,
         errorElement: <NotFound />,
         children: [
             {
@@ -21,6 +21,10 @@ const router = createBrowserRouter([
                 element: <Details />,
             },
         ]
+    },
+    {
+        path: '*',
+        element: <NotFound />,
     },
 ]);
 export default router;

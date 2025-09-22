@@ -3,9 +3,9 @@ import { Container } from '@mui/material';
 import Header from '@/components/Header/Header';
 
 /**
- * The layout containing the header and main content area
+ * The main layout of the App containing the header and main content area
  * */
-const Layout = () => {
+const MainLayout = () => {
     return (
         <Container sx={{ minHeight: '100%', height: '100vh', display: 'flex', flexDirection: 'column' }}>
             <Header title="Starwars characters" colorTitle="#FFC106" />
@@ -13,7 +13,6 @@ const Layout = () => {
                 component='main'
                 sx={{
                     position: 'relative',
-                    marginTop: '2rem',
                     paddingBottom: '2rem',
                 }}
             >
@@ -23,4 +22,4 @@ const Layout = () => {
     )
 }
 
-export default Layout;
+export default MainLayout;

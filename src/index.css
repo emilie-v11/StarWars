@@ -3,7 +3,7 @@ body {
   font-family: 'Orbitron', Arial, Helvetica, sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url(../src/assets/img/stars.webp), no-repeat;
+  background: url(@/assets/img/stars.webp), no-repeat;
   background-size: cover;
 }
 
