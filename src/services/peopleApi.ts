@@ -7,8 +7,8 @@ import { idFromUrl } from '@/utils/helpers';
 const toPerson = (api: PersonApi): Person => ({
   id: idFromUrl(api.url),
   name: api.name,
-  gender: api.gender,
   height: api.height,
+  gender: api.gender,
   mass: api.mass,
   hairColor: api.hair_color,
   skinColor: api.skin_color,

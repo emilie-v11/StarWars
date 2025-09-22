@@ -1,8 +1,8 @@
 export type PersonApi = {
   url: string;
   name: string;
-  gender: string;
   height: string;
+  gender: string;
   mass: string;
   hair_color: string;
   skin_color: string;
@@ -17,8 +17,8 @@ export type Person = {
   id: number | null;
   url?: string;
   name: string;
-  gender: string;
   height: string;
+  gender: string;
   mass: string;
   hairColor: string;
   skinColor: string;
