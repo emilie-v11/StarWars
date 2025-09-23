@@ -42,7 +42,6 @@ const Index = () => {
   const start = (safePage - 1) * pageSize;
   const pagedPeople = fieldsForTable.slice(start, start + pageSize);
 
-  // const columns = Object.keys(fieldsForTable[0] || {}).concat('actions');
   const baseColumns = fieldsForTable[0] ? Object.keys(fieldsForTable[0]) : ['id', 'name', 'height', 'gender'];
   const columns = [...baseColumns, 'actions'];
 
