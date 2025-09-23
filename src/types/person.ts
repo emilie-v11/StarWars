@@ -13,18 +13,7 @@ export type PersonApi = {
   vehicles?: string[] | null;
 };
 
-export type Person = {
-  id: number | null;
-  url?: string;
-  name: string;
-  height: string;
-  gender: string;
-  mass: string;
-  hairColor: string;
-  skinColor: string;
-  eyeColor: string;
-  birthYear: string;
-  homeworld: string | null;
-  films: string[] | null;
-  vehicles: string[] | null;
+// Person = PersonApi without "url" replace by"id" extracted from "url"
+export type Person = Omit<PersonApi, 'url'> & {
+  id: number;
 };
